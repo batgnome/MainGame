@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwv3moc1jv3fy"]
+
+[ext_resource type="Script" path="res://tail.gd" id="1_hoghl"]
+[ext_resource type="Texture2D" uid="uid://cpnm2avd2ef1h" path="res://player.png" id="2_232yo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2cx2"]
+size = Vector2(64, 64)
+
+[node name="tail" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_hoghl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r2cx2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_232yo")
+
+[node name="node_number" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0

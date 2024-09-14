@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://by716cwmuo2jl"]
+
+[ext_resource type="Script" path="res://Rune.gd" id="1_xn8h7"]
+[ext_resource type="Texture2D" uid="uid://cpnm2avd2ef1h" path="res://player.png" id="2_uw6q7"]
+[ext_resource type="PackedScene" uid="uid://chw0cqvf3hska" path="res://turn_timer.tscn" id="3_82t1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_loq1h"]
+size = Vector2(58, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osmd1"]
+size = Vector2(60, 60)
+
+[node name="Rune" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_xn8h7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_loq1h")
+
+[node name="turn" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TurnTimer" parent="." instance=ExtResource("3_82t1t")]
+top_level = false
+light_mask = 8193
+z_index = 4096
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 24.0
+offset_top = -39.0
+offset_right = 24.0
+offset_bottom = -39.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="hit_box" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_osmd1")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uw6q7")
+
+[connection signal="timeout" from="turn" to="." method="_on_turn_timeout"]
+[connection signal="mouse_entered" from="hitbox" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="hitbox" to="." method="_on_hitbox_mouse_exited"]

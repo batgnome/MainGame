@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ht57l8qlqw3b"]
+
+[ext_resource type="PackedScene" uid="uid://by716cwmuo2jl" path="res://rune.tscn" id="1_3d12r"]
+[ext_resource type="Script" path="res://enemRune.gd" id="2_4h7w5"]
+
+[node name="Rune" instance=ExtResource("1_3d12r")]
+script = ExtResource("2_4h7w5")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+debug_enabled = true
+
+[node name="move" type="Timer" parent="." index="5"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[connection signal="timeout" from="move" to="." method="_on_move_timeout"]
