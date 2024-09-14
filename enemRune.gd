@@ -141,20 +141,20 @@ func update_move_options():
 					markers.append(marker)
 									
 					### Add a collision shape to the area
-					if current_state == States.ATTACK:
-						var collision_shape = CollisionShape2D.new()
-						var shape = RectangleShape2D.new()
-						shape.extents = Vector2(tilesize, tilesize)
-						collision_shape.shape = shape
-						collision_shape.position = marker.position
-						#area.add_child(collision_shape)
-						$hurtbox.add_child(collision_shape)
-						# Connect signal to detect collision
-						$hurtbox.connect("body_entered", self._on_area_body_entered)
-						$hurtbox.connect("body_exited", self._on_area_body_exited)
-					elif is_instance_valid(area):
-						for n in $hurtbox.get_children():
-							$hurtbox.remove_child(n)
-							n.queue_free()
+					#if current_state == States.ATTACK:
+						#var collision_shape = CollisionShape2D.new()
+						#var shape = RectangleShape2D.new()
+						#shape.extents = Vector2(tilesize, tilesize)
+						#collision_shape.shape = shape
+						#collision_shape.position = marker.position
+						##area.add_child(collision_shape)
+						#$hurtbox.add_child(collision_shape)
+						## Connect signal to detect collision
+						#$hurtbox.connect("body_entered", self._on_area_body_entered)
+						#$hurtbox.connect("body_exited", self._on_area_body_exited)
+					#elif is_instance_valid(area):
+						#for n in $hurtbox.get_children():
+							#$hurtbox.remove_child(n)
+							#n.queue_free()
 					add_child(area)
 					markers.append(marker)
