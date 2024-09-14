@@ -53,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
 	
-	update_move_options()
+	
 	
 	#this starts the timer 
 	if current_state == States.ATTACK && $turn.time_left  <=0:
@@ -67,7 +67,7 @@ func _on_move_timeout():
 	makepath()
 	
 func movement(time):
-	if (int(time)% 15 == 0):
+	if (int(time)% 30 == 0):
 		if currentMove > 0:
 				for dir in inputs.keys():
 					if get_direction_move() == dir:
@@ -85,7 +85,6 @@ func movement(time):
 							if followers.size() < attributes.maxSize:
 								add_follower()
 							update_followers()
-							update_move_options()
 						else:
 							#prevents weird movement into walls
 							position = currentPos
@@ -98,63 +97,19 @@ func _unhandled_input(event):
 func get_direction_move():
 	
 	var nearest_player = get_nearest_player()
-	var direction = nearest_player.global_position - global_position
+	var direction = nearest_player.global_position
 	#print(direction)
 	var position = ''
-	if direction.x >= tilesize:
+	if direction.x - global_position.x > 0:
 		position = 'right'
-	elif direction.y > tilesize:
-		position =  'up'
-	elif direction.y <= tilesize:
-		position =  'down'
-	elif direction.x < tilesize:
+	elif direction.x - global_position.x < 0:
 		position =  'left'
+	elif direction.y - global_position.y <0:
+		position =  'up'
+	elif direction.y - global_position.y >0:
+		position =  'down'
+
 	return position		
 
-func _on_mouse_entered():
-	print("here")
+
 	
-func update_move_options():
-	#print(len(markers))
-	var moves = 0
-	var text = ""
-	if current_state == States.MOVE:
-		text = preload("res://marker.png")
-		moves = currentMove
-	elif current_state == States.ATTACK:
-		text = preload("res://att_marker.png")
-		moves = attributes.attackRange
-	for marker in markers:
-		marker.queue_free()
-	markers.clear()
-	# Loop through a diamond-shaped pattern based on the number of moves
-	for x in range(-moves, moves + 1):
-		for y in range(-moves, moves + 1):
-			if abs(x) + abs(y) <= moves:
-				if  abs(x) + abs(y) !=0:
-					var area = Area2D.new()
-					var marker = Sprite2D.new()
-					#marker.texture = text
-					marker.position = Vector2(x*tilesize*2, y*tilesize*2)
-					area.add_child(marker)
-					add_child(area)
-					markers.append(marker)
-									
-					### Add a collision shape to the area
-					#if current_state == States.ATTACK:
-						#var collision_shape = CollisionShape2D.new()
-						#var shape = RectangleShape2D.new()
-						#shape.extents = Vector2(tilesize, tilesize)
-						#collision_shape.shape = shape
-						#collision_shape.position = marker.position
-						##area.add_child(collision_shape)
-						#$hurtbox.add_child(collision_shape)
-						## Connect signal to detect collision
-						#$hurtbox.connect("body_entered", self._on_area_body_entered)
-						#$hurtbox.connect("body_exited", self._on_area_body_exited)
-					#elif is_instance_valid(area):
-						#for n in $hurtbox.get_children():
-							#$hurtbox.remove_child(n)
-							#n.queue_free()
-					add_child(area)
-					markers.append(marker)
