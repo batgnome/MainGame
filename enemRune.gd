@@ -19,13 +19,8 @@ func set_attributes():
 var time := 0.0
 @onready var detection_area = get_parent()
 @onready var tilemap = %TileMap
-var AStarGrid : AStarGrid2D
+
 func init():
-	AStarGrid = AStarGrid2D.new()
-	AStarGrid.region = tilemap.get_used_rect()
-	AStarGrid.cell_size=Vector2i(16,16)
-	AStarGrid.diagonal_mode =AStarGrid2D.DIAGONAL_MODE_NEVER
-	AStarGrid.update()
 	for rune in detection_area.get_children():
 		_on_body_entered(rune)
 	super.init()
@@ -33,27 +28,13 @@ func init():
 	$turn.start(attributes.speed)
 
 func _input(event):
-	
 	if event.is_action_pressed("move") == false:
 		return
-	#print(AStarGrid)
-	var id_path = AStarGrid.get_id_path(
-		tilemap.local_to_map(global_position),
-		tilemap.local_to_map(get_global_mouse_position())
-	)
-	#print(tilemap.local_to_map(get_global_mouse_position()))
-	#print(id_path)
 
 func _physics_process(_delta: float) -> void:
-	#var dir = to_local(nav_agent.get_next_path_position().normalized())
-	#time += int(_delta*100)
-	#velocity +=dir * 5
-	#move_and_slide()
 	movement(time)
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
-	
-	
 	
 	#this starts the timer 
 	if current_state == States.ATTACK && $turn.time_left  <=0:
@@ -110,6 +91,7 @@ func get_direction_move():
 		position =  'down'
 
 	return position		
-
+func update_move_options():
+	pass
 
 	
