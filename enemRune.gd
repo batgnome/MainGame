@@ -32,6 +32,9 @@ func _input(event):
 		return
 
 func _physics_process(_delta: float) -> void:
+	#print($EnemMoveSpeed.get_time_left())
+	
+		
 	movement(time)
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
@@ -48,7 +51,7 @@ func _on_move_timeout():
 	makepath()
 	
 func movement(time):
-	if (int(time)% 30 == 0):
+	if $EnemMoveSpeed.time_left <= 0.5:
 		if currentMove > 0:
 				for dir in inputs.keys():
 					if get_direction_move() == dir:
@@ -71,6 +74,8 @@ func movement(time):
 							position = currentPos
 		else :
 			current_state = States.ATTACK
+		print("time")
+		$EnemMoveSpeed.start(0.7)
 
 func _unhandled_input(event):
 	pass

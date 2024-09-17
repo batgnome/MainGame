@@ -6,5 +6,8 @@
 [node name="Rune" instance=ExtResource("1_3d12r")]
 script = ExtResource("2_4h7w5")
 
+[node name="EnemMoveSpeed" type="Timer" parent="." index="1"]
+wait_time = 3.0
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
