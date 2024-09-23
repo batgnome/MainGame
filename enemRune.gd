@@ -19,13 +19,14 @@ func set_attributes():
 var time := 0.0
 @onready var detection_area = get_parent()
 @onready var tilemap = %TileMap
-
+var alreadyRun = 0
 func init():
 	for rune in detection_area.get_children():
 		_on_body_entered(rune)
 	super.init()
 	currentMove = 0
 	$turn.start(attributes.speed)
+	#debugSeed()
 
 func _input(event):
 	if event.is_action_pressed("move") == false:
@@ -34,8 +35,9 @@ func _input(event):
 func _physics_process(_delta: float) -> void:
 	#print($EnemMoveSpeed.get_time_left())
 	
-		
-	movement(time)
+	debugSeed()
+	#movement(time)
+	
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
 	
@@ -98,5 +100,35 @@ func get_direction_move():
 	return position		
 func update_move_options():
 	pass
+
+func debugSeed():
+	if alreadyRun == 0:
+		var arr=['up','up','left','left','up']
+		DebugMovement(arr)
+		alreadyRun = 1
+	
+func DebugMovement(arr):
+	for i in arr:
+		for dir in inputs.keys():
+			if i == dir:
+				print(inputs[dir])
+				var currentPos = position
+				#this moves the peice if there isn't a collision
+				var collision = move_and_collide(inputs[dir] * tilesize *2)
+				
+				
+					
+				#inserts position for the tail segments
+				path.insert(0, position)
+				if path.size() > attributes.maxSize +1:
+					path.pop_back()
+				#adds a new tailsegment
+				if followers.size() < attributes.maxSize:
+					add_follower()
+				update_followers()
+				print(position)
+				#else:
+					##prevents weird movement into walls
+					#position = currentPos
 
 	

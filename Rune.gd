@@ -59,6 +59,7 @@ func _process(delta):
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
+	
 	if current_state == States.ATTACK:
 		attack(event)
 	else:
@@ -194,3 +195,8 @@ func _on_area_body_entered(body):
 		
 func _on_area_body_exited(body):
 		target =null
+
+
+func _on_hitbox_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed('move'):
+		print("move")
