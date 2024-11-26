@@ -59,7 +59,8 @@ func _process(delta):
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
-	
+	if event.is_action_pressed("del"):
+		delete(1)
 	if current_state == States.ATTACK:
 		attack(event)
 	else:
@@ -153,9 +154,10 @@ func add_follower():
 	if path.size() >= followers.size():
 		new_follower.global_position = path[followers.size() - 1]
 
-func update_followers():
+func update_followers(): 
+	print(followers.size())
 	for i in range(followers.size()):
-		if path.size() > i + 1:  # +1 because the first position is for the player itself
+		if path.size() > i + 1 && is_instance_valid(followers[i]):  # +1 because the first position is for the player itself
 			followers[i].global_position = path[i + 1]
 
 func _on_turn_timeout():
@@ -200,3 +202,18 @@ func _on_area_body_exited(body):
 func _on_hitbox_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('move'):
 		print("move")
+		
+func delete(segs):
+	var l = 0
+	if segs >= followers.size():
+		l = followers.size()
+	else:
+		l = segs
+	for f in range(l):
+		followers[followers.size()-f-1].queue_free()
+		followers.remove_at(followers.size()-f-1)
+	
+	if l != segs:
+		queue_free()
+	
+	
