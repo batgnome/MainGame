@@ -5180,6 +5180,7 @@ texture = ExtResource("6_ubgs8")
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ae5xv"]
 texture = ExtResource("1_rpftv")
@@ -6127,5 +6128,6 @@ layer_0/tile_data = PackedInt32Array(327686, 65542, 4, 262150, 65542, 4, 196614,
 [node name="Rune" parent="." instance=ExtResource("7_01df4")]
 position = Vector2(352, 160)
 
-[node name="EnemyRune" parent="." instance=ExtResource("9_nnm0f")]
-position = Vector2(827, 390)
+[node name="Rune2" parent="." instance=ExtResource("9_nnm0f")]
+position = Vector2(1056, 480)
+motion_mode = 1
