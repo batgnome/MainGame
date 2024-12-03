@@ -76,7 +76,7 @@ func movement(time):
 							position = currentPos
 		else :
 			current_state = States.ATTACK
-		print("time")
+		#print("time")
 		$EnemMoveSpeed.start(0.7)
 
 func _unhandled_input(event):
@@ -111,7 +111,7 @@ func DebugMovement(arr):
 	for i in arr:
 		for dir in inputs.keys():
 			if i == dir:
-				print(inputs[dir])
+				#print(inputs[dir])
 				var currentPos = position
 				#this moves the peice if there isn't a collision
 				var collision = move_and_collide(inputs[dir] * tilesize *2)
@@ -126,7 +126,7 @@ func DebugMovement(arr):
 				if followers.size() < attributes.maxSize:
 					add_follower()
 				update_followers()
-				print(position)
+				#print(position)
 				#else:
 					##prevents weird movement into walls
 					#position = currentPos

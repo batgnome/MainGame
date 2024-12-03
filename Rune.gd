@@ -20,12 +20,12 @@ var attributes = {
 	"defense": 2,
 	"maxMove": 3,
 	"attackRange": 3,
-	"attackPower": 4,
+	"attackPower": 1,
 	"speed": 1,
 	"sprite":"res://player.png",
 	"group":"player"
 }
-
+var pressed = false
 var target: CharacterBody2D
 var currentSize = 0
 var currentMove = attributes.maxMove
@@ -38,7 +38,8 @@ func set_attributes():
 
 func _ready():
 	init()
-	print(attributes)
+	#print(attributes)
+	
 
 func init():
 	set_attributes()
@@ -155,7 +156,7 @@ func add_follower():
 		new_follower.global_position = path[followers.size() - 1]
 
 func update_followers(): 
-	print(followers.size())
+	#print(followers.size())
 	for i in range(followers.size()):
 		if path.size() > i + 1 && is_instance_valid(followers[i]):  # +1 because the first position is for the player itself
 			followers[i].global_position = path[i + 1]
@@ -201,7 +202,9 @@ func _on_area_body_exited(body):
 
 func _on_hitbox_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('move'):
-		print("move")
+		pressed = true
+	else:
+		pressed = false
 		
 func delete(segs):
 	var l = 0
