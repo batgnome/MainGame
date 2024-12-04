@@ -6128,6 +6128,9 @@ layer_0/tile_data = PackedInt32Array(327686, 65542, 4, 262150, 65542, 4, 196614,
 [node name="Rune" parent="." instance=ExtResource("7_01df4")]
 position = Vector2(352, 160)
 
-[node name="Rune2" parent="." instance=ExtResource("9_nnm0f")]
+[node name="enem1" parent="." instance=ExtResource("9_nnm0f")]
 position = Vector2(1056, 480)
 motion_mode = 1
+
+[node name="enem2" parent="." instance=ExtResource("9_nnm0f")]
+position = Vector2(376, 592)

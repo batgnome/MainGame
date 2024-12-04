@@ -60,6 +60,8 @@ func _process(delta):
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
+	if event.is_action_pressed("reset"):
+		current_state = States.ATTACK
 	if event.is_action_pressed("del"):
 		delete(1)
 	if current_state == States.ATTACK:
