@@ -31,12 +31,13 @@ func init():
 func _input(event):
 	if event.is_action_pressed("move") == false:
 		return
+		
 
 func _physics_process(_delta: float) -> void:
 	#print($EnemMoveSpeed.get_time_left())
 	
-	debugSeed()
-	#movement(time)
+	#debugSeed()
+	movement(time)
 	
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)

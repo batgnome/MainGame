@@ -48,6 +48,9 @@ collision_mask = 3
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_uw6q7")
 
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="turn" to="." method="_on_turn_timeout"]
 [connection signal="input_event" from="hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="hitbox" to="." method="_on_area_2d_mouse_entered"]

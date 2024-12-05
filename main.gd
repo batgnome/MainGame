@@ -14,12 +14,13 @@ func _ready():
 		elif  e.is_in_group('enemy'):
 			EnemRunes.append(e)
 	selected = PlayRunes[0]
-	selected = PlayRunes[0]
 	tile_pos = tile_map.local_to_map(get_local_mouse_position())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	#print(EnemRunes)
 	if selected.current_state == 1:
 		for e in EnemRunes:
 			if((selected.position - e.position).length()/32 < selected.attributes.attackRange*32):

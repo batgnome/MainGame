@@ -20,7 +20,7 @@ var attributes = {
 	"defense": 2,
 	"maxMove": 3,
 	"attackRange": 3,
-	"attackPower": 1,
+	"attackPower": 2,
 	"speed": 1,
 	"sprite":"res://player.png",
 	"group":"player"
@@ -29,9 +29,10 @@ var pressed = false
 var target: CharacterBody2D
 var currentSize = 0
 var currentMove = attributes.maxMove
+var parent = null
 
 func get_group():
-	return group
+	return attributes.group
 func set_attributes():
 	add_to_group("Player")
 	attributes = attributes
@@ -39,9 +40,17 @@ func set_attributes():
 func _ready():
 	init()
 	#print(attributes)
+	#var timer = $Timer
+	#var callable = Callable(self, "_on_Timer_timeout").bind("extra_argument")
+	#timer.timeout.connect(callable)
+	#timer.start()
+	
+func _on_Timer_timeout(arg):
+	print("Timer has timed out with argument: ", arg)
 	
 
 func init():
+	parent = get_parent()
 	set_attributes()
 	$Sprite2D.texture = load(attributes.sprite)
 	currentMove = attributes.maxMove
@@ -153,6 +162,7 @@ func add_follower():
 	new_follower.add_to_group(attributes.group)
 	add_child(new_follower)
 	followers.append(new_follower)
+	updateParent(new_follower)
 	# Update the position immediately to prevent initial overlap
 	if path.size() >= followers.size():
 		new_follower.global_position = path[followers.size() - 1]
@@ -187,12 +197,6 @@ func get_nearest_player():
 			nearest_dist = dist
 			nearest_player = player
 	return nearest_player
-
-func _on_area_2d_mouse_entered():
-	danger = true
-
-func _on_hitbox_mouse_exited():
-	danger = false
 	
 func _on_area_body_entered(body):
 	if !body.is_in_group("tail") && body.is_in_group("enemy") && body.danger:
@@ -214,11 +218,21 @@ func delete(segs):
 		l = followers.size()
 	else:
 		l = segs
-	for f in range(l):
-		followers[followers.size()-f-1].queue_free()
-		followers.remove_at(followers.size()-f-1)
+	for f in followers:
+		parent.EnemRunes.erase(f)
+		parent.PlayRunes.erase(f)
+		f.queue_free()
+		followers.erase(f)
+		update_followers()
 	
 	if l != segs:
+		parent.EnemRunes.erase(self)
+		parent.PlayRunes.erase(self)
 		queue_free()
-	
+
+func updateParent(tail):
+	if get_group() == 'Player':
+		parent.PlayRunes.append(tail)
+	elif get_group() =='enemy':
+		parent.EnemRunes.append(tail)
 	
