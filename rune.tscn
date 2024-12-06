@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://by716cwmuo2jl"]
+[gd_scene load_steps=8 format=3 uid="uid://by716cwmuo2jl"]
 
 [ext_resource type="Script" path="res://Rune.gd" id="1_xn8h7"]
 [ext_resource type="Texture2D" uid="uid://cpnm2avd2ef1h" path="res://player.png" id="2_uw6q7"]
+[ext_resource type="Shader" path="res://rune.gdshader" id="3_7chrh"]
 [ext_resource type="PackedScene" uid="uid://chw0cqvf3hska" path="res://turn_timer.tscn" id="3_82t1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loq1h"]
@@ -9,6 +10,11 @@ size = Vector2(58, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osmd1"]
 size = Vector2(60, 60)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvl0t"]
+shader = ExtResource("3_7chrh")
+shader_parameter/outline_color = Vector4(1, 1, 1, 1)
+shader_parameter/outline_thickness = 4.0
 
 [node name="Rune" type="CharacterBody2D"]
 collision_layer = 2
@@ -46,6 +52,7 @@ shape = SubResource("RectangleShape2D_osmd1")
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yvl0t")
 texture = ExtResource("2_uw6q7")
 
 [node name="Timer" type="Timer" parent="."]

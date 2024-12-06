@@ -5,7 +5,7 @@ extends "res://Rune.gd"
 func set_attributes():
 	add_to_group("enemy")
 	attributes = {
-	"name": "seeker",
+	"name": "enemy",
 	"health": 2,
 	"maxSize": 3,
 	"defense": 2,
@@ -78,7 +78,7 @@ func movement(time):
 		else :
 			current_state = States.ATTACK
 		#print("time")
-		$EnemMoveSpeed.start(0.7)
+		$EnemMoveSpeed.start(1.0)
 
 func _unhandled_input(event):
 	pass

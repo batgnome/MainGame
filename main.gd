@@ -5,6 +5,7 @@ var tile_pos = Vector2()
 var selected =null
 var PlayRunes = []
 var EnemRunes = []
+enum States { PREP, GAME, PAUSE }
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -14,6 +15,7 @@ func _ready():
 		elif  e.is_in_group('enemy'):
 			EnemRunes.append(e)
 	selected = PlayRunes[0]
+	selected.selected = true
 	tile_pos = tile_map.local_to_map(get_local_mouse_position())
 
 

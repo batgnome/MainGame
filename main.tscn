@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b24s87juntb40"]
+[gd_scene load_steps=20 format=3 uid="uid://b24s87juntb40"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f6b8b"]
 [ext_resource type="Texture2D" uid="uid://dd6xeihwbl0vi" path="res://Texture/TX Tileset Grass.png" id="1_rpftv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://05a15hbxsxmb" path="res://Texture/TX Struct.png" id="6_ubgs8"]
 [ext_resource type="PackedScene" uid="uid://by716cwmuo2jl" path="res://rune.tscn" id="7_01df4"]
 [ext_resource type="PackedScene" uid="uid://ht57l8qlqw3b" path="res://enemRune.tscn" id="9_nnm0f"]
+[ext_resource type="PackedScene" uid="uid://bohpm6jrcii26" path="res://worm.tscn" id="10_5x05j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4e6c"]
 0:0/0 = 0
@@ -5180,6 +5181,7 @@ texture = ExtResource("6_ubgs8")
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ae5xv"]
 texture = ExtResource("1_rpftv")
@@ -6132,4 +6134,7 @@ position = Vector2(1056, 480)
 motion_mode = 1
 
 [node name="enem2" parent="." instance=ExtResource("9_nnm0f")]
-position = Vector2(376, 592)
+position = Vector2(352, 544)
+
+[node name="Rune2" parent="." instance=ExtResource("10_5x05j")]
+position = Vector2(352, 288)

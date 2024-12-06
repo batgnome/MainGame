@@ -14,7 +14,7 @@ var players_in_range = []
 var enems_in_range = []
 var danger = false
 var attributes = {
-	"name": "wheel",
+	"name": "player",
 	"health": 3,
 	"maxSize": 3,
 	"defense": 2,
@@ -30,6 +30,7 @@ var target: CharacterBody2D
 var currentSize = 0
 var currentMove = attributes.maxMove
 var parent = null
+var selected = false
 
 func get_group():
 	return attributes.group
@@ -40,10 +41,7 @@ func set_attributes():
 func _ready():
 	init()
 	#print(attributes)
-	#var timer = $Timer
-	#var callable = Callable(self, "_on_Timer_timeout").bind("extra_argument")
-	#timer.timeout.connect(callable)
-	#timer.start()
+
 	
 func _on_Timer_timeout(arg):
 	print("Timer has timed out with argument: ", arg)
@@ -61,22 +59,23 @@ func _process(delta):
 	
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
-	
-	update_move_options()
+	if selected:
+		update_move_options()
 	
 	#this starts the timer 
 	if current_state == States.ATTACK && $turn.time_left  <=0:
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("reset"):
-		current_state = States.ATTACK
-	if event.is_action_pressed("del"):
-		delete(1)
-	if current_state == States.ATTACK:
-		attack(event)
-	else:
-		movement(event)
+	if selected:
+		if event.is_action_pressed("reset"):
+			current_state = States.ATTACK
+		if event.is_action_pressed("del"):
+			delete(1)
+		if current_state == States.ATTACK:
+			attack(event)
+		else:
+			movement(event)
 
 func attack(event):
 	if is_instance_valid(target) && target.danger && event.is_action_pressed("move"):
@@ -157,7 +156,7 @@ func update_move_options():
 
 func add_follower():
 	var new_follower = follower_scene.instantiate()
-	new_follower.change_sprite(attributes.sprite)
+	new_follower.change_sprite('res://'+attributes.name+'_tail.png')
 	new_follower.setText(followers.size())
 	new_follower.add_to_group(attributes.group)
 	add_child(new_follower)
@@ -224,11 +223,37 @@ func delete(segs):
 		f.queue_free()
 		followers.erase(f)
 		update_followers()
+		await get_tree().create_timer(0.2).timeout  # Adjust delay time (in seconds) as needed
 	
 	if l != segs:
 		parent.EnemRunes.erase(self)
 		parent.PlayRunes.erase(self)
 		queue_free()
+#func delete(segs):
+	#var l = 0
+	#if segs >= followers.size():
+		#l = followers.size()
+	#else:
+		#l = segs
+#
+	#for i in range(l):
+		#if followers.size() > 0:
+			#var f = followers.pop_back()  # Remove the last follower
+			#if is_instance_valid(f):
+				#parent.EnemRunes.erase(f)
+				#parent.PlayRunes.erase(f)
+				#f.queue_free()
+				#update_followers()
+			#
+			## Add a delay between deletions
+			#await get_tree().create_timer(0.2).timeout  # Adjust delay time (in seconds) as needed
+#
+	## If there are no segments left, delete the head
+	#if l != segs:
+		#parent.EnemRunes.erase(self)
+		#parent.PlayRunes.erase(self)
+		#queue_free()
+
 
 func updateParent(tail):
 	if get_group() == 'Player':

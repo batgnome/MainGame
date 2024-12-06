@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bohpm6jrcii26"]
+
+[ext_resource type="PackedScene" uid="uid://by716cwmuo2jl" path="res://rune.tscn" id="1_w4kim"]
+[ext_resource type="Script" path="res://worm.gd" id="2_iyfx5"]
+[ext_resource type="Texture2D" uid="uid://onubj7guoyfy" path="res://worm.png" id="3_mi75b"]
+
+[node name="Rune" instance=ExtResource("1_w4kim")]
+script = ExtResource("2_iyfx5")
+
+[node name="Sprite2D" parent="." index="5"]
+texture = ExtResource("3_mi75b")
