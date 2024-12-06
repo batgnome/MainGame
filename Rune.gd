@@ -51,6 +51,7 @@ func init():
 	parent = get_parent()
 	set_attributes()
 	$Sprite2D.texture = load(attributes.sprite)
+	$Sprite2D.material.set("shader_param/outline_thickness", 0.0)
 	currentMove = attributes.maxMove
 	#add the first position for the tail segments so that the first segment isn't under the head
 	path.insert(0, position)
@@ -261,3 +262,18 @@ func updateParent(tail):
 	elif get_group() =='enemy':
 		parent.EnemRunes.append(tail)
 	
+
+
+func _on_area_2d_mouse_entered():
+	material = $Sprite2D.material  
+	print(material)
+	if material is ShaderMaterial:
+		material.set_shader_parameter("width", 4.0) 
+
+
+func _on_area_2d_mouse_exited():
+		print("hey?2")
+		material = $Sprite2D.material  
+		if material is ShaderMaterial:
+			print("shader")
+			material.set_shader_parameter("width", 0.0)  # Disable outline

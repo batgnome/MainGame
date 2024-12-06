@@ -1,32 +1,31 @@
 shader_type canvas_item;
 
-uniform vec4 outline_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float outline_thickness = 4.0;
+uniform int width:hint_range(0, 5, 1);
+uniform vec4 outline_color:source_color;
+uniform float flickering_speed:hint_range(0.0, 50.0, 1.);
+uniform float minimal_flickering_alpha:hint_range(0.0, 0.9, 0.1);
 
 void fragment() {
-    vec4 tex_color = texture(TEXTURE, UV);
-
-    if (tex_color.a < 0.1) {
-        vec2 offsets[8] = vec2[](
-            vec2(-outline_thickness, -outline_thickness),
-            vec2(0.0, -outline_thickness),
-            vec2(outline_thickness, -outline_thickness),
-            vec2(-outline_thickness, 0.0),
-            vec2(outline_thickness, 0.0),
-            vec2(-outline_thickness, outline_thickness),
-            vec2(0.0, outline_thickness),
-            vec2(outline_thickness, outline_thickness)
-        );
-
-        for (int i = 0; i < 8; i++) {
-            vec4 sample = texture(TEXTURE, UV + offsets[i] / vec2(textureSize(TEXTURE, 0)));
-            if (sample.a > 0.1) {
-                COLOR = outline_color;
-
-            }
-        }
-        discard;
-    }
-
-    COLOR = tex_color;
+	float pixel_size_x = 1.0/float(textureSize(TEXTURE,0).x);
+	float pixel_size_y = 1.0/float(textureSize(TEXTURE,0).y);
+	vec2 pixel_size = vec2(pixel_size_x, pixel_size_y);
+	if (texture(TEXTURE, UV).a == 0.)
+	{ 
+		for(int x = -width; x <= width; x++)
+		{
+			for(int y = -width; y <= width; y++)
+			{
+				vec2 pixel_offset = vec2(float(x),float(y));
+				if( texture(TEXTURE, UV+(pixel_offset*pixel_size)).a > 0.)
+				{
+					vec4 resulting_color = outline_color;
+					
+					COLOR = resulting_color;
+				}
+			}
+		}
+	}else
+	{
+		COLOR = texture(TEXTURE, UV);
+	}
 }
