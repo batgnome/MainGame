@@ -31,6 +31,7 @@ var currentSize = 0
 var currentMove = attributes.maxMove
 var parent = null
 var selected = false
+var inMouse = false
 
 func get_group():
 	return attributes.group
@@ -77,7 +78,15 @@ func _unhandled_input(event):
 			attack(event)
 		else:
 			movement(event)
-
+	elif event.is_action_pressed("move") and inMouse:
+		selected = true
+		parent.selected.selected = false
+		for marker in parent.selected.markers:
+			marker.queue_free()
+			markers.clear()
+		parent.selected = self
+		print(markers)
+		
 func attack(event):
 	if is_instance_valid(target) && target.danger && event.is_action_pressed("move"):
 		
@@ -230,33 +239,10 @@ func delete(segs):
 		parent.EnemRunes.erase(self)
 		parent.PlayRunes.erase(self)
 		queue_free()
-#func delete(segs):
-	#var l = 0
-	#if segs >= followers.size():
-		#l = followers.size()
-	#else:
-		#l = segs
-#
-	#for i in range(l):
-		#if followers.size() > 0:
-			#var f = followers.pop_back()  # Remove the last follower
-			#if is_instance_valid(f):
-				#parent.EnemRunes.erase(f)
-				#parent.PlayRunes.erase(f)
-				#f.queue_free()
-				#update_followers()
-			#
-			## Add a delay between deletions
-			#await get_tree().create_timer(0.2).timeout  # Adjust delay time (in seconds) as needed
-#
-	## If there are no segments left, delete the head
-	#if l != segs:
-		#parent.EnemRunes.erase(self)
-		#parent.PlayRunes.erase(self)
-		#queue_free()
 
 
 func updateParent(tail):
+	
 	if get_group() == 'Player':
 		parent.PlayRunes.append(tail)
 	elif get_group() =='enemy':
@@ -265,6 +251,7 @@ func updateParent(tail):
 
 
 func _on_area_2d_mouse_entered():
+	inMouse = true
 	material = $Sprite2D.material  
 	print(material)
 	if material is ShaderMaterial:
@@ -272,8 +259,9 @@ func _on_area_2d_mouse_entered():
 
 
 func _on_area_2d_mouse_exited():
-		print("hey?2")
-		material = $Sprite2D.material  
-		if material is ShaderMaterial:
-			print("shader")
-			material.set_shader_parameter("width", 0.0)  # Disable outline
+	inMouse = false
+	print("hey?2")
+	material = $Sprite2D.material  
+	if material is ShaderMaterial:
+		print("shader")
+		material.set_shader_parameter("width", 0.0)  # Disable outline

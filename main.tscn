@@ -6137,3 +6137,12 @@ position = Vector2(352, 544)
 
 [node name="Rune2" parent="." instance=ExtResource("10_5x05j")]
 position = Vector2(352, 288)
+
+[node name="Rune3" parent="." instance=ExtResource("10_5x05j")]
+position = Vector2(992, 224)
+
+[node name="Rune4" parent="." instance=ExtResource("9_nnm0f")]
+position = Vector2(736, 480)
+
+[node name="Rune5" parent="." instance=ExtResource("7_01df4")]
+position = Vector2(608, 288)
