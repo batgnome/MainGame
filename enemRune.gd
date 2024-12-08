@@ -21,8 +21,7 @@ var time := 0.0
 @onready var tilemap = %TileMap
 var alreadyRun = 0
 func init():
-	for rune in detection_area.get_children():
-		_on_body_entered(rune)
+	
 	super.init()
 	currentMove = 0
 	$turn.start(attributes.speed)

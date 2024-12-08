@@ -119,7 +119,8 @@ func update_move_options():
 		text = preload("res://att_marker.png")
 		moves = attributes.attackRange
 	for marker in markers:
-		marker.queue_free()
+		if is_instance_valid(marker):
+			marker.queue_free()
 	markers.clear()
 	# Loop through a diamond-shaped pattern based on the number of moves
 	for x in range(-moves, moves + 1):
@@ -161,16 +162,6 @@ func _on_turn_timeout():
 	currentMove = attributes.maxMove
 	current_state = States.MOVE
 
-func _on_body_entered(body):
-	if body.is_in_group("Player"):
-		players_in_range.append(body)
-		for bod in body.get_children():
-			_on_body_entered(bod)
-	if body.is_in_group("Enemy"):
-		enems_in_range.append(body)
-		for bod in body.get_children():
-			_on_body_entered(bod)
-
 func get_nearest_player():
 	var nearest_player = null
 	var nearest_dist = 1e10
@@ -181,9 +172,6 @@ func get_nearest_player():
 			nearest_player = player
 	return nearest_player
 	
-
-
-
 func _on_hitbox_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('move'):
 		pressed = true
@@ -194,6 +182,7 @@ func delete(segs):
 	
 	var l = 0
 	var s = 0
+	var temp = null
 	if segs >= followers.size():
 		l = followers.size()
 		s = followers.size()
@@ -205,8 +194,9 @@ func delete(segs):
 		
 		parent.EnemRunes.erase(followers[index])
 		parent.PlayRunes.erase(followers[index])
-		await followers[index].play_deletion_animation()
+		temp = followers[index]
 		followers.erase(followers[index])
+		await temp.play_deletion_animation()
 		#f.queue_free()
 		update_followers()
 		l -= 1
