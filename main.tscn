@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b24s87juntb40"]
+[gd_scene load_steps=21 format=3 uid="uid://b24s87juntb40"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_f6b8b"]
 [ext_resource type="Texture2D" uid="uid://dd6xeihwbl0vi" path="res://Texture/TX Tileset Grass.png" id="1_rpftv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://by716cwmuo2jl" path="res://rune.tscn" id="7_01df4"]
 [ext_resource type="PackedScene" uid="uid://ht57l8qlqw3b" path="res://enemRune.tscn" id="9_nnm0f"]
 [ext_resource type="PackedScene" uid="uid://bohpm6jrcii26" path="res://worm.tscn" id="10_5x05j"]
+[ext_resource type="PackedScene" uid="uid://caitwjkcrigcu" path="res://wheel.tscn" id="11_sq3cq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4e6c"]
 0:0/0 = 0
@@ -6146,3 +6147,9 @@ position = Vector2(736, 480)
 
 [node name="Rune5" parent="." instance=ExtResource("7_01df4")]
 position = Vector2(608, 288)
+
+[node name="Rune6" parent="." instance=ExtResource("11_sq3cq")]
+position = Vector2(160, 480)
+
+[node name="Rune7" parent="." instance=ExtResource("11_sq3cq")]
+position = Vector2(608, 608)

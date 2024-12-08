@@ -41,8 +41,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4kfku")
 }],
-"loop": false,
-"name": &"delete",
+"loop": true,
+"name": &"default",
 "speed": 14.0
 }]
 
@@ -56,14 +56,15 @@ size = Vector2(60, 60)
 collision_mask = 3
 script = ExtResource("1_hoghl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_acf1b")
-animation = &"delete"
+frame = 3
+frame_progress = 0.773446
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r2cx2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D_old" type="Sprite2D" parent="."]
 texture = ExtResource("2_p5ps5")
 hframes = 5
 

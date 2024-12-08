@@ -41,12 +41,8 @@ func set_attributes():
 
 func _ready():
 	init()
-	#print(attributes)
+	
 
-	
-func _on_Timer_timeout(arg):
-	print("Timer has timed out with argument: ", arg)
-	
 
 func init():
 	parent = get_parent()
@@ -85,12 +81,11 @@ func _unhandled_input(event):
 			marker.queue_free()
 			markers.clear()
 		parent.selected = self
-		print(markers)
 		
 func attack(event):
-	if is_instance_valid(target) && target.danger && event.is_action_pressed("move"):
+	#if is_instance_valid(target) && target.danger && event.is_action_pressed("move"):
 		
-		print("attack!")
+		
 	pass
 func movement(event):
 	if currentMove > 0:
@@ -118,7 +113,6 @@ func movement(event):
 		current_state = States.ATTACK
 
 func update_move_options():
-	#print(len(markers))
 	var moves = 0
 	var text = ""
 	if current_state == States.MOVE:
@@ -167,6 +161,7 @@ func update_move_options():
 func add_follower():
 	var new_follower = follower_scene.instantiate()
 	new_follower.change_sprite('res://'+attributes.name+'_tail.png')
+	
 	new_follower.setText(followers.size())
 	new_follower.add_to_group(attributes.group)
 	add_child(new_follower)
@@ -177,10 +172,11 @@ func add_follower():
 		new_follower.global_position = path[followers.size() - 1]
 
 func update_followers(): 
-	#print(followers.size())
+	
 	for i in range(followers.size()):
 		if path.size() > i + 1 && is_instance_valid(followers[i]):  # +1 because the first position is for the player itself
 			followers[i].global_position = path[i + 1]
+			followers[i].setText(i)
 
 func _on_turn_timeout():
 	$turn.stop()
@@ -222,20 +218,29 @@ func _on_hitbox_input_event(viewport, event, shape_idx):
 		pressed = false
 		
 func delete(segs):
+	
 	var l = 0
+	var s = 0
 	if segs >= followers.size():
 		l = followers.size()
+		s = followers.size()
 	else:
 		l = segs
-	for f in followers:
-		parent.EnemRunes.erase(f)
-		parent.PlayRunes.erase(f)
-		f.queue_free()
-		followers.erase(f)
+		s = segs
+	var index = followers.size() - 1
+	while l > 0:
+		
+		parent.EnemRunes.erase(followers[index])
+		parent.PlayRunes.erase(followers[index])
+		await followers[index].play_deletion_animation()
+		followers.erase(followers[index])
+		#f.queue_free()
 		update_followers()
-		await get_tree().create_timer(0.2).timeout  # Adjust delay time (in seconds) as needed
+		l -= 1
+		index -= 1
+		#await get_tree().create_timer(0.2).timeout  # Adjust delay time (in seconds) as needed
 	
-	if l != segs:
+	if s != segs:
 		parent.EnemRunes.erase(self)
 		parent.PlayRunes.erase(self)
 		queue_free()
@@ -252,16 +257,13 @@ func updateParent(tail):
 
 func _on_area_2d_mouse_entered():
 	inMouse = true
-	material = $Sprite2D.material  
-	print(material)
+	material = $Sprite2D.material 
 	if material is ShaderMaterial:
 		material.set_shader_parameter("width", 4.0) 
 
 
 func _on_area_2d_mouse_exited():
 	inMouse = false
-	print("hey?2")
 	material = $Sprite2D.material  
 	if material is ShaderMaterial:
-		print("shader")
 		material.set_shader_parameter("width", 0.0)  # Disable outline
