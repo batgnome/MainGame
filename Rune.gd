@@ -35,6 +35,7 @@ var inMouse = false
 
 func get_group():
 	return attributes.group
+	
 func set_attributes():
 	add_to_group("Player")
 	attributes = attributes
@@ -42,9 +43,8 @@ func set_attributes():
 func _ready():
 	init()
 	
-
-
 func init():
+	#set controller for the rune here
 	parent = get_parent()
 	set_attributes()
 	$Sprite2D.texture = load(attributes.sprite)
@@ -65,28 +65,25 @@ func _process(delta):
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
+	#can move rune if this is the selected
 	if selected:
 		if event.is_action_pressed("reset"):
 			current_state = States.ATTACK
 		if event.is_action_pressed("del"):
 			delete(1)
-		if current_state == States.ATTACK:
-			attack(event)
 		else:
 			movement(event)
+	#this selects this rune
 	elif event.is_action_pressed("move") and inMouse:
 		selected = true
 		parent.selected.selected = false
 		for marker in parent.selected.markers:
-			marker.queue_free()
-			markers.clear()
+			if is_instance_valid(marker):
+				marker.queue_free()
+				markers.clear()
 		parent.selected = self
 		
-func attack(event):
-	#if is_instance_valid(target) && target.danger && event.is_action_pressed("move"):
-		
-		
-	pass
+
 func movement(event):
 	if currentMove > 0:
 			for dir in inputs.keys():
@@ -136,25 +133,7 @@ func update_move_options():
 					area.add_child(marker)
 					add_child(area)
 					markers.append(marker)
-									
-					### Add a collision shape to the area
-					if current_state == States.ATTACK:
-						var collision_shape = CollisionShape2D.new()
-						var shape = RectangleShape2D.new()
-						shape.extents = Vector2(tilesize, tilesize)
-						collision_shape.shape = shape
-						collision_shape.position = marker.position
-						#area.add_child(collision_shape)
-						$hurtbox.add_child(collision_shape)
-						# Connect signal to detect collision
-						$hurtbox.connect("body_entered", self._on_area_body_entered)
-						$hurtbox.connect("body_exited", self._on_area_body_exited)
-					elif is_instance_valid(area):
-						for n in $hurtbox.get_children():
-							$hurtbox.remove_child(n)
-							n.queue_free()
-					add_child(area)
-					markers.append(marker)
+							
 
 # Signal callback function to handle collisions
 
@@ -172,7 +151,6 @@ func add_follower():
 		new_follower.global_position = path[followers.size() - 1]
 
 func update_followers(): 
-	
 	for i in range(followers.size()):
 		if path.size() > i + 1 && is_instance_valid(followers[i]):  # +1 because the first position is for the player itself
 			followers[i].global_position = path[i + 1]
@@ -196,19 +174,14 @@ func _on_body_entered(body):
 func get_nearest_player():
 	var nearest_player = null
 	var nearest_dist = 1e10
-	for player in players_in_range:
+	for player in get_parent().PlayRunes:
 		var dist = global_position.distance_to(player.global_position)
 		if dist < nearest_dist:
 			nearest_dist = dist
 			nearest_player = player
 	return nearest_player
 	
-func _on_area_body_entered(body):
-	if !body.is_in_group("tail") && body.is_in_group("enemy") && body.danger:
-		target = body
-		
-func _on_area_body_exited(body):
-		target =null
+
 
 
 func _on_hitbox_input_event(viewport, event, shape_idx):

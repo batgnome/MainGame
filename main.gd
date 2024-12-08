@@ -21,7 +21,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	if !is_instance_valid(selected):
+		selected = PlayRunes[0]
 	#print(EnemRunes)
 	if selected.current_state == 1:
 		for e in EnemRunes:
