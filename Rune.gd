@@ -166,10 +166,11 @@ func get_nearest_player():
 	var nearest_player = null
 	var nearest_dist = 1e10
 	for player in get_parent().PlayRunes:
-		var dist = global_position.distance_to(player.global_position)
-		if dist < nearest_dist:
-			nearest_dist = dist
-			nearest_player = player
+		if is_instance_valid(player):
+			var dist = global_position.distance_to(player.global_position)
+			if dist < nearest_dist:
+				nearest_dist = dist
+				nearest_player = player
 	return nearest_player
 	
 func _on_hitbox_input_event(viewport, event, shape_idx):

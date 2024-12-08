@@ -85,17 +85,18 @@ func _unhandled_input(event):
 func get_direction_move():
 	
 	var nearest_player = get_nearest_player()
-	var direction = nearest_player.global_position
-	#print(direction)
-	var position = ''
-	if direction.x - global_position.x > 0:
-		position = 'right'
-	elif direction.x - global_position.x < 0:
-		position =  'left'
-	elif direction.y - global_position.y <0:
-		position =  'up'
-	elif direction.y - global_position.y >0:
-		position =  'down'
+	if is_instance_valid(nearest_player):
+		var direction = nearest_player.global_position
+		#print(direction)
+		var position = ''
+		if direction.x - global_position.x > 0:
+			position = 'right'
+		elif direction.x - global_position.x < 0:
+			position =  'left'
+		elif direction.y - global_position.y <0:
+			position =  'up'
+		elif direction.y - global_position.y >0:
+			position =  'down'
 
 	return position		
 func update_move_options():

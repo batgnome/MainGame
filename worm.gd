@@ -1,7 +1,7 @@
 extends "res://Rune.gd"
 
 func set_attributes():
-	add_to_group("player")
+	add_to_group("Player")
 	attributes = {
 	"name": "worm",
 	"health": 7,
