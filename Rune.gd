@@ -54,7 +54,6 @@ func init():
 	path.insert(0, position)
 
 func _process(delta):
-	
 	#this is the timer for the node
 	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
 	if selected:
@@ -135,9 +134,6 @@ func update_move_options():
 					add_child(area)
 					markers.append(marker)
 							
-
-# Signal callback function to handle collisions
-
 func add_follower():
 	var new_follower = follower_scene.instantiate()
 	new_follower.change_sprite('res://'+attributes.name+'_tail.png')

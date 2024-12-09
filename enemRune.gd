@@ -53,6 +53,7 @@ func _on_move_timeout():
 	makepath()
 	
 func movement(time):
+	
 	if $EnemMoveSpeed.time_left <= 0.5:
 		if currentMove > 0:
 				for dir in inputs.keys():
@@ -83,12 +84,11 @@ func _unhandled_input(event):
 	pass
 	
 func get_direction_move():
-	
+	var position = ''
 	var nearest_player = get_nearest_player()
 	if is_instance_valid(nearest_player):
 		var direction = nearest_player.global_position
 		#print(direction)
-		var position = ''
 		if direction.x - global_position.x > 0:
 			position = 'right'
 		elif direction.x - global_position.x < 0:

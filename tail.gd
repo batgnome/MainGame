@@ -32,8 +32,6 @@ func setText(text):
 func change_sprite(sprite):
 	$Sprite2D.texture = load(sprite)
 	
-
-	
 func delete(segs):
 	parent.delete(segs)
 
