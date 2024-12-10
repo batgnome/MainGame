@@ -17,47 +17,41 @@ func set_attributes():
 	"group":"enemy"
 }
 var time := 0.0
+var attacked = false
 @onready var detection_area = get_parent()
 @onready var tilemap = %TileMap
-var alreadyRun = 0
+var enemSelected = false
 func init():
-	
 	super.init()
 	currentMove = 0
 	$turn.start(attributes.speed)
-	#debugSeed()
-
-func _input(event):
-	if event.is_action_pressed("move") == false:
-		return
-		
-
+func _unhandled_input(event):
+	pass
 func _physics_process(_delta: float) -> void:
-	#print($EnemMoveSpeed.get_time_left())
+	if enemSelected:
+		$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
+		movement(time)
 	
-	#debugSeed()
-	movement(time)
-	
-	#this is the timer for the node
-	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
-	
-	#this starts the timer 
-	if current_state == States.ATTACK && $turn.time_left  <=0:
-		$turn.start(attributes.speed)
+		#this is the timer for the node
+		
+		#this starts the timer 
+		if current_state == States.ATTACK && $turn.time_left  <=0:
+			var nearest_player = get_nearest_player()
+			if((position-nearest_player.position).length()/64 <= attributes.attackRange and !attacked):
+					nearest_player.delete(attributes.attackPower)
+					attacked = true
+			$turn.start(attributes.speed)
+			attacked = false
 
-func makepath():
-	nav_agent.target_position = get_nearest_player().global_position
-	
-func _on_move_timeout():
-	
-	makepath()
-	
 func movement(time):
 	
 	if $EnemMoveSpeed.time_left <= 0.5:
 		if currentMove > 0:
 				for dir in inputs.keys():
 					if get_direction_move() == dir:
+						if is_in_range():
+							current_state = States.ATTACK
+							break;
 						var currentPos = position
 						#this moves the peice if there isn't a collision
 						var collision = move_and_collide(inputs[dir] * tilesize *2)
@@ -77,13 +71,29 @@ func movement(time):
 							position = currentPos
 		else :
 			current_state = States.ATTACK
+			
+			
 		#print("time")
 		$EnemMoveSpeed.start(1.0)
-
-func _unhandled_input(event):
-	pass
+func is_in_range():
+	var nearest_player = get_nearest_player()
+	if((position-nearest_player.position).length()/64 <= attributes.attackRange):
+		return true
+	return false
+	
+func get_nearest_player():
+	var nearest_player = null
+	var nearest_dist = 1e10
+	for player in get_parent().PlayRunes:
+		if is_instance_valid(player):
+			var dist = global_position.distance_to(player.global_position)
+			if dist < nearest_dist:
+				nearest_dist = dist
+				nearest_player = player
+	return nearest_player
 	
 func get_direction_move():
+	
 	var position = ''
 	var nearest_player = get_nearest_player()
 	if is_instance_valid(nearest_player):
@@ -99,37 +109,6 @@ func get_direction_move():
 			position =  'down'
 
 	return position		
+
 func update_move_options():
 	pass
-
-func debugSeed():
-	if alreadyRun == 0:
-		var arr=['up','up','left','left','up']
-		DebugMovement(arr)
-		alreadyRun = 1
-	
-func DebugMovement(arr):
-	for i in arr:
-		for dir in inputs.keys():
-			if i == dir:
-				#print(inputs[dir])
-				var currentPos = position
-				#this moves the peice if there isn't a collision
-				var collision = move_and_collide(inputs[dir] * tilesize *2)
-				
-				
-					
-				#inserts position for the tail segments
-				path.insert(0, position)
-				if path.size() > attributes.maxSize +1:
-					path.pop_back()
-				#adds a new tailsegment
-				if followers.size() < attributes.maxSize:
-					add_follower()
-				update_followers()
-				#print(position)
-				#else:
-					##prevents weird movement into walls
-					#position = currentPos
-
-	

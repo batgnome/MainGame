@@ -20,7 +20,7 @@ func _ready():
 	selected.selected = true
 	
 	enemSelected = EnemRunes[0]
-	enemSelected.selected = true
+	enemSelected.enemSelected = true
 	
 	tile_pos = tile_map.local_to_map(get_local_mouse_position())
 
@@ -51,12 +51,13 @@ func playerLogic():
 	if is_instance_valid(selected):
 		if selected.current_state == 1:
 			for e in EnemRunes:
-				if((selected.position - e.position).length()/32 < selected.attributes.attackRange*32):
-					if(e.pressed):
-						print(e)
-						e.delete(selected.attributes.attackPower)
-						e.pressed = false
-						selected.current_state = 0
+				if is_instance_valid(e):
+					if((selected.position - e.position).length()/64 <= selected.attributes.attackRange):
+						if(e.pressed):
+							print(e)
+							e.delete(selected.attributes.attackPower)
+							e.pressed = false
+							selected.current_state = 0
 					
 func enemyLogic():
 	if !is_instance_valid(enemSelected):
