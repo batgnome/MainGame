@@ -25,13 +25,15 @@ func init():
 	super.init()
 	currentMove = 0
 	$turn.start(attributes.speed)
+	
 func _unhandled_input(event):
 	pass
+	
 func _physics_process(_delta: float) -> void:
 	if enemSelected:
 		$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
 		movement(time)
-	
+		
 		#this is the timer for the node
 		
 		#this starts the timer 
@@ -40,9 +42,15 @@ func _physics_process(_delta: float) -> void:
 			if((position-nearest_player.position).length()/64 <= attributes.attackRange and !attacked):
 					nearest_player.delete(attributes.attackPower)
 					attacked = true
+					enemSelected = false
 			$turn.start(attributes.speed)
-			attacked = false
+			endTurn()
+			
 
+func endTurn():
+	enemSelected = false
+	attacked = false
+	
 func movement(time):
 	
 	if $EnemMoveSpeed.time_left <= 0.5:
@@ -69,6 +77,8 @@ func movement(time):
 						else:
 							#prevents weird movement into walls
 							position = currentPos
+							endTurn()
+							
 		else :
 			current_state = States.ATTACK
 			

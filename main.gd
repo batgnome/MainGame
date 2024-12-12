@@ -6,6 +6,7 @@ var selected =null
 var enemSelected =null
 var PlayRunes = []
 var EnemRunes = []
+var EnemRunesSelect = []
 enum States { PREP, GAME, PAUSE }
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,11 +16,12 @@ func _ready():
 			PlayRunes.append(e)
 		elif  e.is_in_group('enemy'):
 			EnemRunes.append(e)
+			EnemRunesSelect.append(e)
 			
 	selected = PlayRunes[0]
 	selected.selected = true
 	
-	enemSelected = EnemRunes[0]
+	enemSelected = EnemRunesSelect[0]
 	enemSelected.enemSelected = true
 	
 	tile_pos = tile_map.local_to_map(get_local_mouse_position())
@@ -59,6 +61,29 @@ func playerLogic():
 							e.pressed = false
 							selected.current_state = 0
 					
+var current_enemy_index = 0  # Tracks the index of the selected enemy
+
 func enemyLogic():
-	if !is_instance_valid(enemSelected):
-		enemSelected = EnemRunes[0]
+	# Check if current enemy is invalid or deselected
+	if !is_instance_valid(enemSelected) or !enemSelected.enemSelected:
+		# Select the next enemy in the list
+		select_next_enemy()
+	else:
+		# Let the current enemy process its turn
+		enemSelected.enemSelected = true
+
+func select_next_enemy():
+	# Cycle to the next valid enemy
+	while current_enemy_index < EnemRunesSelect.size():
+		var enemy = EnemRunesSelect[current_enemy_index]
+		if is_instance_valid(enemy):
+			enemSelected = enemy
+			enemSelected.enemSelected = true
+			current_enemy_index += 1
+			return
+		else:
+			# Skip invalid enemies
+			current_enemy_index += 1
+
+	# Reset index if all enemies are processed
+	current_enemy_index = 0
