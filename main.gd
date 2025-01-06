@@ -73,17 +73,21 @@ func enemyLogic():
 		enemSelected.enemSelected = true
 
 func select_next_enemy():
-	# Cycle to the next valid enemy
-	while current_enemy_index < EnemRunesSelect.size():
+	#rawait get_tree().create_timer(0.5).timeout
+	if current_enemy_index >= EnemRunesSelect.size():
+		current_enemy_index = 0	
+	print(current_enemy_index)
+	if is_instance_valid(EnemRunesSelect[current_enemy_index]):
+		EnemRunesSelect[current_enemy_index].enemSelected = false
 		var enemy = EnemRunesSelect[current_enemy_index]
-		if is_instance_valid(enemy):
-			enemSelected = enemy
-			enemSelected.enemSelected = true
-			current_enemy_index += 1
-			return
-		else:
-			# Skip invalid enemies
-			current_enemy_index += 1
+	
+		enemSelected = enemy
+		enemSelected.enemSelected = true
+		current_enemy_index += 1
+		return
+	else:
+		# Skip invalid enemies
+		current_enemy_index += 1
 
 	# Reset index if all enemies are processed
-	current_enemy_index = 0
+

@@ -12,7 +12,7 @@ func set_attributes():
 	"maxMove": 3,
 	"attackRange": 1,
 	"attackPower": 2,
-	"speed": 3,
+	"speed": 5,
 	"sprite":"res://enem.png",
 	"group":"enemy"
 }
@@ -31,6 +31,9 @@ func _unhandled_input(event):
 	
 func _physics_process(_delta: float) -> void:
 	if enemSelected:
+		material = $Sprite2D.material 
+		if material is ShaderMaterial:
+			material.set_shader_parameter("width", 0.4) 
 		$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
 		movement(time)
 		
@@ -45,11 +48,16 @@ func _physics_process(_delta: float) -> void:
 					enemSelected = false
 			$turn.start(attributes.speed)
 			endTurn()
-			
+	else: 
+		material = $Sprite2D.material 
+		if material is ShaderMaterial:
+			material.set_shader_parameter("width", 0.0) 	
 
 func endTurn():
 	enemSelected = false
 	attacked = false
+	await get_tree().create_timer(2.5).timeout
+	emit_signal("turn_finished")
 	
 func movement(time):
 	

@@ -66,6 +66,9 @@ func _process(delta):
 func _unhandled_input(event):
 	#can move rune if this is the selected
 	if selected:
+		material = $Sprite2D.material 
+		if material is ShaderMaterial:
+			material.set_shader_parameter("width", 4.0) 
 		if event.is_action_pressed("reset"):
 			current_state = States.ATTACK
 		if event.is_action_pressed("del"):
@@ -81,7 +84,10 @@ func _unhandled_input(event):
 				marker.queue_free()
 				markers.clear()
 		parent.selected = self
-		
+	else:
+		material = $Sprite2D.material 
+		if material is ShaderMaterial:
+			material.set_shader_parameter("width", 0.0) 
 
 func movement(event):
 	if currentMove > 0:
