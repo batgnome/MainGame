@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ht57l8qlqw3b"]
+
+[ext_resource type="PackedScene" uid="uid://by716cwmuo2jl" path="res://Scenes/rune.tscn" id="1_3d12r"]
+[ext_resource type="Script" path="res://Scripts/enemRune.gd" id="2_4h7w5"]
+[ext_resource type="Shader" path="res://Shaders/rune.gdshader" id="3_s3t8y"]
+[ext_resource type="Texture2D" uid="uid://d4fu4x84xgw57" path="res://Textures/enem.png" id="4_gahqs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a46vs"]
+resource_local_to_scene = true
+shader = ExtResource("3_s3t8y")
+shader_parameter/width = 2
+shader_parameter/outline_color = null
+shader_parameter/flickering_speed = null
+shader_parameter/minimal_flickering_alpha = null
+
+[node name="Rune" instance=ExtResource("1_3d12r")]
+script = ExtResource("2_4h7w5")
+
+[node name="EnemMoveSpeed" type="Timer" parent="." index="1"]
+wait_time = 3.0
+
+[node name="Sprite2D" parent="." index="7"]
+material = SubResource("ShaderMaterial_a46vs")
+texture = ExtResource("4_gahqs")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]

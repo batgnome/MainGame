@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://cwv3moc1jv3fy"]
+
+[ext_resource type="Script" path="res://Scripts/tail.gd" id="1_q052t"]
+[ext_resource type="Texture2D" uid="uid://djnd1ao5k14er" path="res://Textures/enemy_tail.png" id="2_fohpj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jok0g"]
+atlas = ExtResource("2_fohpj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lbnl"]
+atlas = ExtResource("2_fohpj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv4s2"]
+atlas = ExtResource("2_fohpj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v03bo"]
+atlas = ExtResource("2_fohpj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kfku"]
+atlas = ExtResource("2_fohpj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_acf1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jok0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lbnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv4s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v03bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kfku")
+}],
+"loop": false,
+"name": &"delete",
+"speed": 14.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2cx2"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4jak"]
+size = Vector2(60, 60)
+
+[node name="tail" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_q052t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_acf1b")
+animation = &"delete"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r2cx2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fohpj")
+hframes = 5
+
+[node name="node_number" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="hit_box" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_r4jak")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="input_event" from="hitbox" to="." method="_on_hitbox_input_event"]
+[connection signal="mouse_entered" from="hitbox" to="." method="_on_hitbox_mouse_entered"]

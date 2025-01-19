@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://chw0cqvf3hska"]
+
+[ext_resource type="Script" path="res://Scripts/TurnTimer.gd" id="1_i7a3t"]
+[ext_resource type="Texture2D" uid="uid://v21g7lsgql1s" path="res://Textures/under.png" id="2_y2pil"]
+[ext_resource type="Texture2D" uid="uid://uh2v0ilfttmd" path="res://Textures/progress.png" id="3_pwipa"]
+
+[node name="TurnTimer" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i7a3t")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 9.0
+value = 33.0
+fill_mode = 4
+texture_under = ExtResource("2_y2pil")
+texture_progress = ExtResource("3_pwipa")
