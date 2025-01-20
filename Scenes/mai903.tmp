@@ -6198,20 +6198,19 @@ position = Vector2(152, 152)
 texture = ExtResource("10_dc2ur")
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/GameOverBox"]
-offset_left = -56.0
+offset_left = -80.0
 offset_top = -120.0
-offset_right = 48.0
+offset_right = 75.0
 offset_bottom = -64.0
 text = "Paused"
 label_settings = SubResource("LabelSettings_cu6h3")
 metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/GameOverBox"]
-offset_left = -120.0
+offset_left = -112.0
 offset_top = -32.0
-offset_right = 153.0
+offset_right = 112.0
 offset_bottom = 8.0
-scale = Vector2(0.85, 0.85)
 mouse_filter = 2
 alignment = 1
 metadata/_edit_group_ = true
