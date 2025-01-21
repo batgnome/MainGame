@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c8gwrtaptdwvc"
+path="res://.godot/imported/Anthurium.obj-343cc908e539847712cfa4cc8fd009af.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Anthurium.obj-343cc908e539847712cfa4cc8fd009af.mesh"]
+
+source_file="res://3d assets/Environoment Pack V.1/OBJ/Anthurium.obj"
+dest_files=["res://.godot/imported/Anthurium.obj-343cc908e539847712cfa4cc8fd009af.mesh", "res://.godot/imported/Anthurium.obj-343cc908e539847712cfa4cc8fd009af.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

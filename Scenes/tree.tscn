@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://s6mpgbu3k774"]
+
+[ext_resource type="PackedScene" uid="uid://4p1jc78tybr5" path="res://3d assets/myTree.fbx" id="1_6r40s"]
+
+[node name="Root Scene" instance=ExtResource("1_6r40s")]
+
+[node name="Light" parent="RootNode" index="0"]
+visible = false
+
+[node name="Camera" parent="RootNode" index="1"]
+visible = false
+
+[node name="leaf" parent="RootNode" index="2"]
+visible = false
+
+[node name="leaf_001" parent="RootNode" index="3"]
+visible = false
+
+[node name="leaf_002" parent="RootNode" index="4"]
+visible = false

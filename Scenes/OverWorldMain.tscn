@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0vmkkq7h1dfb"]
+[gd_scene load_steps=9 format=3 uid="uid://b0vmkkq7h1dfb"]
 
 [ext_resource type="Script" path="res://Scripts/OverWorldPlayer.gd" id="1_3xbut"]
+[ext_resource type="Script" path="res://Scripts/CameraSpringArm.gd" id="3_p7n4q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62abb"]
 albedo_color = Color(0.141176, 0.227451, 0.054902, 1)
@@ -17,6 +18,9 @@ material = SubResource("StandardMaterial3D_62abb")
 [sub_resource type="BoxMesh" id="BoxMesh_p10ln"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00322886, 0.999995, 0, -0.999995, 0.00322886, -0.745447, 23.632, -1.19544)
 
 [node name="Map" type="Node3D" parent="."]
 
@@ -56,3 +60,12 @@ mesh = SubResource("CapsuleMesh_dbor1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Weapon"]
 transform = Transform3D(0.25762, 0, 0, 0, 0.192247, 0, 0, 0, 1, 0.34786, 1.34541, -0.665385)
 mesh = SubResource("BoxMesh_p10ln")
+
+[node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, -3.39919, 20.7311, 13.1544)
+spring_length = 15.0
+script = ExtResource("3_p7n4q")
+player = NodePath("../Player")
+
+[node name="Camera3D" type="Camera3D" parent="CameraSpringArm"]
+transform = Transform3D(1, -2.98023e-08, -5.66244e-07, 2.98023e-08, 1, -2.98023e-08, 5.66244e-07, -5.96046e-08, 1, 0, 0, 0)
