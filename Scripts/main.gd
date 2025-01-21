@@ -8,24 +8,24 @@ var PlayRunes = []
 var EnemRunes = []
 var EnemRunesSelect = []
 enum States { PREP, GAME, PAUSE }
-@onready var game_over_ui = $CanvasLayer
+@onready var basic_ui = $CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#game_over_ui.visible = false
-	game_over_ui.get_child(0).visible = false
-	game_over_ui.get_child(1).visible = false
+	#basic_ui.visible = false
+	basic_ui.get_child(0).visible = false
+	basic_ui.get_child(1).visible = false
 	center_ui()
 	 # Connect the Restart button
-	game_over_ui.get_node("GameOverMenu/GameOverBox/HBoxContainer/Restart").connect("pressed", Callable(self, "_on_restart_pressed"))
+	basic_ui.get_node("GameOverMenu/GameOverBox/HBoxContainer/Restart").connect("pressed", Callable(self, "_on_restart_pressed"))
 
 	# Connect the Quit button
-	game_over_ui.get_node("GameOverMenu/GameOverBox/HBoxContainer/Quit").connect("pressed", Callable(self, "_on_quit_pressed"))
+	basic_ui.get_node("GameOverMenu/GameOverBox/HBoxContainer/Quit").connect("pressed", Callable(self, "_on_quit_pressed"))
 	
-	game_over_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Restart").connect("pressed", Callable(self, "_on_restart_pressed_pause"))
-	game_over_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Continue").connect("pressed", Callable(self, "_on_continue_pressed_pause"))
+	basic_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Restart").connect("pressed", Callable(self, "_on_restart_pressed_pause"))
+	basic_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Continue").connect("pressed", Callable(self, "_on_continue_pressed_pause"))
 
 	# Connect the Quit button
-	game_over_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Quit").connect("pressed", Callable(self, "_on_quit_pressed_pause"))
+	basic_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Quit").connect("pressed", Callable(self, "_on_quit_pressed_pause"))
 	
 	for e in get_children():
 		if e.is_in_group('Player'):
@@ -46,8 +46,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func center_ui():
 	# Access the GameOverBox node
-	var game_over_box = game_over_ui.get_node("GameOverMenu/GameOverBox")
-	var paused_box = game_over_ui.get_node("PauseMenu/GameOverBox")
+	var game_over_box = basic_ui.get_node("GameOverMenu/GameOverBox")
+	var paused_box = basic_ui.get_node("PauseMenu/GameOverBox")
 	
 	if game_over_box is Sprite2D: 
 		game_over_box.position = Vector2(
@@ -64,14 +64,14 @@ func center_ui():
 	else:
 		print("Error: GameOverBox is not a Sprite2D!")
 func _process(delta):
-	
+	print(delta)
 	playerLogic()
 	enemyLogic()
 	
 func _unhandled_input(event):
 	
 	if event.is_action_pressed("pause"):
-		game_over_ui.get_child(1).visible = true
+		basic_ui.get_child(1).visible = true
 		get_tree().paused = true
 
 
@@ -110,7 +110,7 @@ var current_enemy_index = 0  # Tracks the index of the selected enemy
 
 # Show the game over screen
 func show_game_over():
-	game_over_ui.get_child(0).visible = true
+	basic_ui.get_child(0).visible = true
 	get_tree().paused = true
 	
 
@@ -170,7 +170,7 @@ func _on_quit_button_down_pause():
 
 
 func _on_continue_button_down_pause():
-	game_over_ui.get_child(1).visible = false
+	basic_ui.get_child(1).visible = false
 	get_tree().paused = false
 
 func _on_restart_button_down_pause():

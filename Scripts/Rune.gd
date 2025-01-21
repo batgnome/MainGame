@@ -13,7 +13,7 @@ var group = ""
 var players_in_range = []
 var enems_in_range = []
 var danger = false
-var attributes = {
+@export var attributes = {
 	"name": "player",
 	"health": 3,
 	"maxSize": 3,

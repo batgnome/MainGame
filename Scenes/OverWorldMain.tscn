@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0vmkkq7h1dfb"]
+
+[ext_resource type="Script" path="res://Scripts/OverWorldPlayer.gd" id="1_3xbut"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62abb"]
+albedo_color = Color(0.141176, 0.227451, 0.054902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_48tr2"]
+material = SubResource("StandardMaterial3D_62abb")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qb02a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hcl0w"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dbor1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p10ln"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_48tr2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_qb02a")
+
+[node name="Ramp" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(13.7481, 0, 0, 0, 9.03505, 6.50444, 0, -3.30654, 17.7733, 14.4556, -1.31944, 10.6553)
+mesh = SubResource("BoxMesh_48tr2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
+shape = SubResource("BoxShape3D_qb02a")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.506608, 0)
+script = ExtResource("1_3xbut")
+SPEED = 9.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hcl0w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_dbor1")
+
+[node name="Weapon" type="Node3D" parent="Player"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Weapon"]
+transform = Transform3D(0.25762, 0, 0, 0, 0.192247, 0, 0, 0, 1, 0.34786, 1.34541, -0.665385)
+mesh = SubResource("BoxMesh_p10ln")
