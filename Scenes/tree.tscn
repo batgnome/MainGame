@@ -1,20 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://s6mpgbu3k774"]
+[gd_scene load_steps=4 format=3 uid="uid://s6mpgbu3k774"]
 
-[ext_resource type="PackedScene" uid="uid://4p1jc78tybr5" path="res://3d assets/myTree.fbx" id="1_6r40s"]
+[ext_resource type="ArrayMesh" uid="uid://c745atd5nbboo" path="res://3d assets/tree.obj" id="1_kn51v"]
 
-[node name="Root Scene" instance=ExtResource("1_6r40s")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kmgm4"]
 
-[node name="Light" parent="RootNode" index="0"]
-visible = false
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ij205"]
 
-[node name="Camera" parent="RootNode" index="1"]
-visible = false
+[node name="Node3D" type="Node3D"]
 
-[node name="leaf" parent="RootNode" index="2"]
-visible = false
+[node name="Tree" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.742072, 0, 0.133048)
+mesh = ExtResource("1_kn51v")
 
-[node name="leaf_001" parent="RootNode" index="3"]
-visible = false
+[node name="StaticBody3D" type="StaticBody3D" parent="Tree"]
 
-[node name="leaf_002" parent="RootNode" index="4"]
-visible = false
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree/StaticBody3D"]
+transform = Transform3D(2.47089, 0, 0, 0, 1.56, 0, 0, 0, 2.12512, 0.38605, 1.56284, 0.129269)
+shape = SubResource("CapsuleShape3D_kmgm4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tree/StaticBody3D"]
+transform = Transform3D(0.862019, 0.506877, 0, -0.506877, 0.862019, 0, 0, 0, 1, 1.48343, 3.28658, 0.136727)
+shape = SubResource("CylinderShape3D_ij205")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Tree/StaticBody3D"]
+transform = Transform3D(0.617837, -0.349826, 0, 0.349826, 0.617837, 0, 0, 0, 0.71, 0.819778, 4.45868, 0.414489)
+shape = SubResource("CylinderShape3D_ij205")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Tree/StaticBody3D"]
+transform = Transform3D(0.637245, 0.275382, -0.148942, -0.31308, 0.560515, -0.303158, 0, 0.337769, 0.624509, -2.07251, 5.11539, 0.893309)
+shape = SubResource("CylinderShape3D_ij205")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Tree/StaticBody3D"]
+transform = Transform3D(0.629373, -1.32129, -0.114616, 0.739773, 1.12411, 0.0975116, 1.31632e-11, -0.272061, 0.959546, -1.44657, 3.17979, 0.697876)
+shape = SubResource("CylinderShape3D_ij205")

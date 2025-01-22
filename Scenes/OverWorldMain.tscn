@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0vmkkq7h1dfb"]
+[gd_scene load_steps=10 format=3 uid="uid://b0vmkkq7h1dfb"]
 
+[ext_resource type="PackedScene" uid="uid://s6mpgbu3k774" path="res://Scenes/tree.tscn" id="1_1c5di"]
 [ext_resource type="Script" path="res://Scripts/OverWorldPlayer.gd" id="1_3xbut"]
 [ext_resource type="Script" path="res://Scripts/CameraSpringArm.gd" id="3_p7n4q"]
 
@@ -18,6 +19,9 @@ material = SubResource("StandardMaterial3D_62abb")
 [sub_resource type="BoxMesh" id="BoxMesh_p10ln"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="tree" parent="." instance=ExtResource("1_1c5di")]
+transform = Transform3D(0.817326, 0, -0.576176, 0, 1, 0, 0.576176, 0, 0.817326, 17.053, 0, -13.8541)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.00322886, 0.999995, 0, -0.999995, 0.00322886, -0.745447, 23.632, -1.19544)
@@ -62,10 +66,9 @@ transform = Transform3D(0.25762, 0, 0, 0, 0.192247, 0, 0, 0, 1, 0.34786, 1.34541
 mesh = SubResource("BoxMesh_p10ln")
 
 [node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(0.866025, 0.353553, 0.353553, 0, 0.707107, -0.707107, -0.5, 0.612372, 0.612372, -3.39919, 20.7311, 13.1544)
+transform = Transform3D(1, 0, 0, 0, 0.90528, 0.424815, 0, -0.424816, 0.905279, -0.0312052, 20.1141, 31.9652)
 spring_length = 15.0
 script = ExtResource("3_p7n4q")
 player = NodePath("../Player")
 
 [node name="Camera3D" type="Camera3D" parent="CameraSpringArm"]
-transform = Transform3D(1, -2.98023e-08, -5.66244e-07, 2.98023e-08, 1, -2.98023e-08, 5.66244e-07, -5.96046e-08, 1, 0, 0, 0)
