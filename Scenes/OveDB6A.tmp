@@ -28,16 +28,7 @@ transform = Transform3D(1.11571, 0, -0.742148, 0, 1.34, 0, 0.742148, 0, 1.11571,
 transform = Transform3D(0.42109, 0.0220489, -1.27193, -0.24075, 1.31697, -0.0568743, 1.24913, 0.246392, 0.417814, -2.09184, -3.17768, -16.4877)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.301771, 0.953381, 0, -0.953381, 0.301771, -2.46827, 23.0647, 2.2497)
-light_color = Color(1, 0.85098, 0.462745, 1)
-light_energy = 8.802
-light_indirect_energy = 4.654
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 16.67
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_transmittance_bias = -0.14
-shadow_opacity = 0.55
+transform = Transform3D(1, 0, 0, 0, 0.00322886, 0.999995, 0, -0.999995, 0.00322886, -0.745447, 23.632, -1.19544)
 
 [node name="Map" type="Node3D" parent="."]
 
@@ -59,11 +50,10 @@ mesh = SubResource("BoxMesh_48tr2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
 shape = SubResource("BoxShape3D_qb02a")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.506608, 0)
 script = ExtResource("1_3xbut")
 SPEED = 9.0
-camera = NodePath("../CameraSpringArm/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

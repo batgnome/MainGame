@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5iywqmnobcfp"]
+
+[ext_resource type="ArrayMesh" uid="uid://dr1e0invfntk4" path="res://3d assets/Environoment Pack V.1/OBJ/Rock_01.obj" id="1_62y4f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jqhcd"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Rock01" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0251595, 0, -0.388458)
+mesh = ExtResource("1_62y4f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rock01"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock01/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0556124, 0.998452, 0, -0.998452, 0.0556124, 0.0870337, -0.00532787, 0.0956553)
+shape = SubResource("CapsuleShape3D_jqhcd")

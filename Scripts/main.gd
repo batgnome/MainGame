@@ -64,7 +64,7 @@ func center_ui():
 	else:
 		print("Error: GameOverBox is not a Sprite2D!")
 func _process(delta):
-	print(delta)
+	# print(delta)	
 	playerLogic()
 	enemyLogic()
 	
