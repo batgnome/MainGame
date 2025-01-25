@@ -43,11 +43,10 @@ func set_attributes():
 	attributes = attributes
 
 func _ready():
-	print(self)
+	
 	init()
 	
 func init():
-	print("init")
 	# Set the parent node
 	parent = get_parent()
 	if parent == null:
@@ -56,7 +55,6 @@ func init():
 
 	# Set attributes
 	set_attributes()
-	print(global_transform.origin)
 
  	# Ensure the path array has an initial position
 	# if path.size() == 0:  # Check if the array is empty
@@ -66,7 +64,7 @@ func init():
 	# 	print("Path already initialized with: ", path)
 		
 	# Add the first position for the tail segments so that the first segment isn't under the head
-	# path.insert(0, global_transform.origin)	
+	path.insert(0, global_transform.origin)	
 
 
 
@@ -82,7 +80,6 @@ func _process(delta):
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
-	print(event)
 	#can move rune if this is the selected
 	#if selected:
 		# material = $Sprite2D.material 
@@ -109,7 +106,6 @@ func _unhandled_input(event):
 	# 		material.set_shader_parameter("width", 0.0) 
 
 func movement(event):
-	print(event)
 	if currentMove > 0:
 		for dir in inputs.keys():
 			if event.is_action_pressed(dir):

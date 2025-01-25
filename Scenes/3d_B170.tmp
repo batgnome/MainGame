@@ -25,6 +25,15 @@ mesh = SubResource("BoxMesh_oeq7q")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_f8via")
 
+[node name="Ramp" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(13.7481, 0, 0, 0, 9.03505, 6.50444, 0, -3.30654, 17.7733, 14.4556, -1.31944, 10.6553)
+mesh = SubResource("BoxMesh_oeq7q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
+shape = SubResource("BoxShape3D_f8via")
+
 [node name="Rune3d" parent="." instance=ExtResource("1_t0s2j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 
@@ -49,6 +58,6 @@ directional_shadow_pancake_size = 32.5
 [node name="pivot" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="pivot"]
-transform = Transform3D(0.707107, -0.315509, 0.632814, 0, 0.894934, 0.446198, -0.707107, -0.315509, 0.632814, 7.045, 12.27, 5.955)
+transform = Transform3D(1, 0, 0, 0, 0.817648, 0.575719, 0, -0.575719, 0.817648, -1.089, 4.54, 6.081)
 near = 0.475
 far = 3981.3

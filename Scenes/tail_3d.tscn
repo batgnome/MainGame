@@ -14,12 +14,12 @@ transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_bfob7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.9, 0, 0, 0, 0.29, 0, 0, 0, 0.9, 0, 0, 0)
 mesh = SubResource("BoxMesh_l7c8c")
 
 [node name="node_number" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.0723935, 0, 0, 0, -4.73223e-09, 1, 0, -0.108261, -4.37114e-08, 0, 1.20476, 6.83355e-07)
+transform = Transform3D(0.0723935, 0, 0, 0, -4.73223e-09, 1, 0, -0.108261, -4.37114e-08, 0, 0.204759, 7.27067e-07)
 pixel_size = 0.1
 text = "Test"
 font_size = 37
