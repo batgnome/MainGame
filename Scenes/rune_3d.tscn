@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://d16jed5vq2ae3"]
+
+[ext_resource type="Script" path="res://Scripts/rune_3d.gd" id="1_lryo6"]
+[ext_resource type="PackedScene" uid="uid://chw0cqvf3hska" path="res://Scenes/turn_timer.tscn" id="2_1oqa0"]
+[ext_resource type="Script" path="res://Scripts/TurnTimer3D.gd" id="3_rdv5q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ucutw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jeb6h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_381by"]
+albedo_color = Color(0, 0.956863, 0.435294, 1)
+
+[node name="Rune3d" type="CharacterBody3D"]
+script = ExtResource("1_lryo6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.323, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ucutw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_jeb6h")
+surface_material_override/0 = SubResource("StandardMaterial3D_381by")
+
+[node name="turn" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TurnTimer" parent="." instance=ExtResource("2_1oqa0")]
+top_level = false
+light_mask = 8193
+z_index = 4096
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 24.0
+offset_top = -39.0
+offset_right = 24.0
+offset_bottom = -39.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TurnTimer3D" type="Label3D" parent="."]
+script = ExtResource("3_rdv5q")

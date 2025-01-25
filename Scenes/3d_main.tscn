@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwh7syu1ttnx6"]
+
+[ext_resource type="PackedScene" uid="uid://d16jed5vq2ae3" path="res://Scenes/rune_3d.tscn" id="1_t0s2j"]
+[ext_resource type="Script" path="res://Scripts/3d_main.gd" id="1_tejnt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62abb"]
+albedo_color = Color(0.141176, 0.227451, 0.054902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oeq7q"]
+material = SubResource("StandardMaterial3D_62abb")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f8via"]
+
+[node name="3dMain" type="Node3D"]
+script = ExtResource("1_tejnt")
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_oeq7q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_f8via")
+
+[node name="Ramp" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(13.7481, 0, 0, 0, 9.03505, 6.50444, 0, -3.30654, 17.7733, 14.4556, -1.31944, 10.6553)
+mesh = SubResource("BoxMesh_oeq7q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
+shape = SubResource("BoxShape3D_f8via")
+
+[node name="Rune3d" parent="." instance=ExtResource("1_t0s2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.385, 1, -7.267)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 248.141, 0)
+light_color = Color(0.568627, 0.556863, 0.247059, 1)
+light_energy = 5.705
+light_indirect_energy = 1.835
+light_volumetric_fog_energy = 8.495
+light_angular_distance = 89.0
+shadow_enabled = true
+shadow_bias = 4.868
+shadow_normal_bias = 2.988
+shadow_transmittance_bias = 2.158
+shadow_blur = 1.19
+directional_shadow_split_1 = 0.275
+directional_shadow_split_3 = 0.365
+directional_shadow_fade_start = 0.35
+directional_shadow_max_distance = 85.0
+directional_shadow_pancake_size = 32.5
+
+[node name="pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.581143, 0.813801, 0, -0.813801, 0.581143, 0, 13.7906, 5.77323)
+near = 0.475
+far = 3981.3

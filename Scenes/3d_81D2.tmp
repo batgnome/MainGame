@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwh7syu1ttnx6"]
+
+[ext_resource type="PackedScene" uid="uid://d16jed5vq2ae3" path="res://Scenes/rune_3d.tscn" id="1_t0s2j"]
+[ext_resource type="Script" path="res://Scripts/3d_main.gd" id="1_tejnt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nqrx8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obska"]
+albedo_color = Color(0.423529, 0.698039, 0, 1)
+
+[node name="3dMain" type="Node3D"]
+script = ExtResource("1_tejnt")
+
+[node name="Rune3d" parent="." instance=ExtResource("1_t0s2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3848, 62.9209, 7.73326)
+attributes = null
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 248.141, 0)
+light_energy = 3.927
+light_indirect_energy = 1.55
+light_volumetric_fog_energy = 1.68
+light_angular_distance = 90.0
+shadow_enabled = true
+shadow_bias = 0.19
+shadow_normal_bias = 2.988
+shadow_transmittance_bias = 2.223
+shadow_blur = 1.05
+directional_shadow_split_1 = 0.25
+directional_shadow_split_3 = 0.365
+directional_shadow_fade_start = 0.63
+directional_shadow_max_distance = 89.5
+directional_shadow_pancake_size = 32.5
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map"]
+transform = Transform3D(500, 0, 0, 0, 0.003, 0, 0, 0, 500, 0, 0, 0)
+mesh = SubResource("BoxMesh_nqrx8")
+surface_material_override/0 = SubResource("StandardMaterial3D_obska")
+
+[node name="pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 100, 100)

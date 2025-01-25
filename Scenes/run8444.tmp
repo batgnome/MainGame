@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d16jed5vq2ae3"]
+
+[ext_resource type="Script" path="res://Scripts/rune_3d.gd" id="1_lryo6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ucutw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jeb6h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_381by"]
+albedo_color = Color(0, 0.956863, 0.435294, 1)
+
+[node name="Rune3d" type="CharacterBody3D"]
+script = ExtResource("1_lryo6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 6.44, 0, 0, 0, 20, 0, 3.29488, 0)
+shape = SubResource("BoxShape3D_ucutw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 6.44, 0, 0, 0, 20, 0, 3.29488, 0)
+mesh = SubResource("BoxMesh_jeb6h")
+surface_material_override/0 = SubResource("StandardMaterial3D_381by")

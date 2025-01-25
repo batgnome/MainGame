@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://Scripts/CameraSpringArm.gd" id="3_p7n4q"]
 [ext_resource type="PackedScene" uid="uid://b5iywqmnobcfp" path="res://Scenes/rock_1.tscn" id="4_r8jw6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62abb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t26i"]
 albedo_color = Color(0.141176, 0.227451, 0.054902, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_48tr2"]
-material = SubResource("StandardMaterial3D_62abb")
+material = SubResource("StandardMaterial3D_7t26i")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qb02a"]
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjj1u165nyps7"]
+
+[ext_resource type="Script" path="res://Scenes/tail_3d.gd" id="1_fml7v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfob7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_l7c8c"]
+
+[node name="Tail_3d" type="CharacterBody3D"]
+script = ExtResource("1_fml7v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_bfob7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_l7c8c")
+
+[node name="node_number" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.0723935, 0, 0, 0, -4.73223e-09, 1, 0, -0.108261, -4.37114e-08, 0, 1.20476, 6.83355e-07)
+pixel_size = 0.1
+text = "Test"
+font_size = 37
