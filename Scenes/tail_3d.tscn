@@ -13,7 +13,7 @@ script = ExtResource("1_fml7v")
 transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_bfob7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.9, 0, 0, 0, 0.29, 0, 0, 0, 0.9, 0, 0, 0)
 mesh = SubResource("BoxMesh_l7c8c")
 

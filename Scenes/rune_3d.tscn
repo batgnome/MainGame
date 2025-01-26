@@ -9,7 +9,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_jeb6h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_381by"]
-albedo_color = Color(0, 0.956863, 0.435294, 1)
+albedo_color = Color(0.992157, 0.705882, 0.8, 1)
 
 [node name="Rune3d" type="CharacterBody3D"]
 script = ExtResource("1_lryo6")
@@ -18,7 +18,7 @@ script = ExtResource("1_lryo6")
 transform = Transform3D(1, 0, 0, 0, 0.323, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_ucutw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.322, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_jeb6h")
 surface_material_override/0 = SubResource("StandardMaterial3D_381by")

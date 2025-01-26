@@ -49,6 +49,7 @@ directional_shadow_pancake_size = 32.5
 [node name="pivot" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="pivot"]
-transform = Transform3D(0.707107, -0.315509, 0.632814, 0, 0.894934, 0.446198, -0.707107, -0.315509, 0.632814, 7.045, 12.27, 5.955)
-near = 0.475
-far = 3981.3
+transform = Transform3D(1, 0, 0, 0, 0.7093, 0.704907, 0, -0.704907, 0.7093, 0, 7.55107, 8.56431)
+size = 9.889
+near = 0.001
+far = 4002.65

@@ -3,7 +3,6 @@
 [sub_resource type="BoxMesh" id="BoxMesh_l7c8c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yurpi"]
-blend_mode = 3
 depth_draw_mode = 1
 albedo_color = Color(0.454902, 0.560784, 0.796078, 1)
 emission_enabled = true
@@ -14,6 +13,6 @@ emission_operator = 1
 [node name="Marker" type="Area3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_l7c8c")
 surface_material_override/0 = SubResource("StandardMaterial3D_yurpi")

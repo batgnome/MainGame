@@ -165,8 +165,12 @@ func update_move_options():
 							
 func add_follower():
 	var new_follower = follower_scene.instantiate()
+	var follower_mesh = new_follower.get_node("Mesh")
+	var rune_mesh = get_node("Mesh")
+	follower_mesh.material_override = rune_mesh.material_override
+	follower_mesh.set_surface_override_material(0, rune_mesh.get_surface_override_material(0))
 	# new_follower.change_sprite('res://Textures/'+attributes.name+'_tail.png')
-	
+	print(get_node("Mesh"))
 	new_follower.setText(followers.size())
 	new_follower.add_to_group(attributes.group)
 	add_child(new_follower)

@@ -2,7 +2,7 @@ extends Node3D
 
 
 # @onready var tile_map = %TileMap
-var tile_pos = Vector3()
+var tile_pos = Vector2()
 var selected =null
 var enemSelected =null
 var PlayRunes = []
