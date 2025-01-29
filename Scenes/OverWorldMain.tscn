@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0vmkkq7h1dfb"]
+[gd_scene load_steps=13 format=3 uid="uid://b0vmkkq7h1dfb"]
 
 [ext_resource type="Script" path="res://Scripts/OverWorldPlayer.gd" id="1_3xbut"]
 [ext_resource type="PackedScene" uid="uid://c654xbytlrv0y" path="res://Scenes/rock_cluster.tscn" id="3_4xx8p"]
@@ -19,6 +19,12 @@ material = SubResource("StandardMaterial3D_7t26i")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dbor1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p10ln"]
+
+[sub_resource type="Environment" id="Environment_yx3uw"]
+background_mode = 1
+background_color = Color(0.466667, 0.898039, 0.945098, 1)
+background_energy_multiplier = 1.78
+ambient_light_color = Color(0.670588, 0.713726, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -120,3 +126,9 @@ transform = Transform3D(-3.30572, 0.343816, -1.40609, 0.4786, 2.37476, 0.203572,
 
 [node name="Node3D2" parent="." instance=ExtResource("4_r8jw6")]
 transform = Transform3D(4.49495, -3.7809, 2.20987, 0.995853, 21.0326, 0, -2.16714, 1.82287, 4.58359, 19.148, 3.78512, 17.7664)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+sky_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yx3uw")
