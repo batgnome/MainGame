@@ -14,4 +14,6 @@ Adventure through the wizardy lands as you seek to rescue your father from the e
 -  [ ]  create overland player
 -  [ ]  create node strengths and weaknesses
 -  [ ]  Convert to 3d
--  [ ]  Create Ui 
+-  [ ]  Create Ui
+-  [ ]  Design First Level
+-  [ ]  Create Start Menu
