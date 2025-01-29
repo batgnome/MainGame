@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0vmkkq7h1dfb"]
+[gd_scene load_steps=12 format=3 uid="uid://b0vmkkq7h1dfb"]
 
-[ext_resource type="PackedScene" uid="uid://s6mpgbu3k774" path="res://Scenes/tree.tscn" id="1_1c5di"]
 [ext_resource type="Script" path="res://Scripts/OverWorldPlayer.gd" id="1_3xbut"]
+[ext_resource type="PackedScene" uid="uid://c654xbytlrv0y" path="res://Scenes/rock_cluster.tscn" id="3_4xx8p"]
 [ext_resource type="Script" path="res://Scripts/CameraSpringArm.gd" id="3_p7n4q"]
+[ext_resource type="PackedScene" uid="uid://b6ulb0tb36lig" path="res://Scenes/rock_cluster_2.tscn" id="4_iteov"]
 [ext_resource type="PackedScene" uid="uid://b5iywqmnobcfp" path="res://Scenes/rock_1.tscn" id="4_r8jw6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t26i"]
@@ -21,16 +22,10 @@ material = SubResource("StandardMaterial3D_7t26i")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="tree" parent="." instance=ExtResource("1_1c5di")]
-transform = Transform3D(1.11571, 0, -0.742148, 0, 1.34, 0, 0.742148, 0, 1.11571, 16.8703, 0, -13.7017)
-
-[node name="tree2" parent="." instance=ExtResource("1_1c5di")]
-transform = Transform3D(0.42109, 0.0220489, -1.27193, -0.24075, 1.31697, -0.0568743, 1.24913, 0.246392, 0.417814, -2.09184, -3.17768, -16.4877)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.301771, 0.953381, 0, -0.953381, 0.301771, -2.46827, 23.0647, 2.2497)
 light_color = Color(1, 0.85098, 0.462745, 1)
-light_energy = 8.802
+light_energy = 2.982
 light_indirect_energy = 4.654
 light_volumetric_fog_energy = 0.0
 light_angular_distance = 16.67
@@ -48,15 +43,6 @@ mesh = SubResource("BoxMesh_48tr2")
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor/StaticBody3D"]
-shape = SubResource("BoxShape3D_qb02a")
-
-[node name="Ramp" type="MeshInstance3D" parent="Map"]
-transform = Transform3D(13.7481, 0, 0, 0, 9.03505, 6.50444, 0, -3.30654, 17.7733, 14.4556, -1.31944, 10.6553)
-mesh = SubResource("BoxMesh_48tr2")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
 shape = SubResource("BoxShape3D_qb02a")
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
@@ -81,26 +67,56 @@ mesh = SubResource("BoxMesh_p10ln")
 
 [node name="CameraSpringArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.90528, 0.424815, 0, -0.424816, 0.905279, -0.0312052, 20.1141, 31.9652)
-spring_length = 15.0
+spring_length = 10.0
 script = ExtResource("3_p7n4q")
 player = NodePath("../Player")
 
 [node name="Camera3D" type="Camera3D" parent="CameraSpringArm"]
 
+[node name="RockCluster" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(-1.65735, 0, -1.72978, 0, 3.79152, 0, 1.72978, 0, -1.65735, -16.8301, 2.64272, -21.3553)
+
+[node name="RockCluster2" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(2.39582, 0, -0.0296898, 0, 3.792, 0, -0.0296898, 0, -2.39582, -8.6499, 4.1487, -22.1856)
+
+[node name="RockCluster3" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(0.25361, 0, 2.38254, 0, 3.792, 0, 2.38254, 0, -0.25361, -23.4082, 1.2345, 0.194734)
+
+[node name="Rock_cluster2" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(2.21923, -0.208332, -0.399819, 0.149527, 3.19192, -1.86265e-09, 0.398943, -0.037451, 2.2241, 4.20505, 0.797329, -18.4758)
+
+[node name="Rock_cluster7" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(-1.31925, -0.208332, 1.82878, -0.107595, 3.19192, 0.103834, -1.83153, -0.037451, -1.32337, 17.0058, 0.00577101, -17.1877)
+
+[node name="Rock_cluster6" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(1.41245, -0.208332, -1.75779, 0.112842, 3.19192, -0.0981062, 1.76033, -0.037451, 1.4167, -17.4398, -0.214005, 15.7344)
+
+[node name="Rock_cluster3" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(-0.111765, 0, 2.01547, 0, 2.66261, 0, -2.01547, 0, -0.111765, -22.4886, 1.21613, -12.0915)
+
+[node name="RockCluster4" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(0.665295, 0, 0.74658, 0, 1, 0, -0.74658, 0, 0.665295, -13.6694, -0.683708, -3.39588)
+
+[node name="Rock_cluster4" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3334, -1.7091, -5.77841)
+
+[node name="RockCluster5" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(1.13538, 0, -0.673655, 0, 1.32019, 0, 0.673655, 0, 1.13538, -18.5853, 0.782097, 3.44039)
+
+[node name="Rock_cluster5" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(0.600932, 0, 0, 0, 0.600932, 0, 0, 0, 0.600932, -11.5936, 0.5, 5.35655)
+
 [node name="Node3D" parent="." instance=ExtResource("4_r8jw6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5656, 0.731452, -16.4815)
+transform = Transform3D(1, 0, 0, 0, 1.33262, 0, 0, 0, 0.67444, -7.20046, 0.370846, 5.75991)
+
+[node name="Rock_cluster8" parent="." instance=ExtResource("4_iteov")]
+transform = Transform3D(0.122436, 0, 2.2107, 0, 3.86702, 0, -2.2107, 0, 0.122436, 22.9558, 0.5, -3.75033)
+
+[node name="RockCluster6" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(4.04321, 0.45193, 0, -0.585373, 3.12151, 0, 0, 0, 1, -9.60372, 6.14602, 22.4761)
+
+[node name="RockCluster7" parent="." instance=ExtResource("3_4xx8p")]
+transform = Transform3D(-3.30572, 0.343816, -1.40609, 0.4786, 2.37476, 0.203572, 1.21903, 0, -3.89289, 13.8595, 2.74903, 18.044)
 
 [node name="Node3D2" parent="." instance=ExtResource("4_r8jw6")]
-transform = Transform3D(2.14961, -0.722013, 1.2514, -0.714761, 1.41813, 2.046, -1.25555, -2.04346, 0.977741, 11, 1, -18.7918)
-
-[node name="Node3D6" parent="." instance=ExtResource("4_r8jw6")]
-transform = Transform3D(0.388219, -0.426517, 1.41713, -1.14805, 0.837736, 0.566639, -0.933899, -1.20714, -0.107476, 2.77043, 0.870476, -19.1084)
-
-[node name="Node3D3" parent="." instance=ExtResource("4_r8jw6")]
-transform = Transform3D(0.61672, 0.786809, -0.0242496, -0.749629, 0.596421, 0.286948, 0.240236, -0.158788, 0.95764, 1.97717, 0.7616, -14.2469)
-
-[node name="Node3D5" parent="." instance=ExtResource("4_r8jw6")]
-transform = Transform3D(0.61672, 0.329927, 0.714706, -0.749629, -0.0309353, 0.661135, 0.240236, -0.9435, 0.228245, 2.0149, 0.315126, -15.7369)
-
-[node name="Node3D4" parent="." instance=ExtResource("4_r8jw6")]
-transform = Transform3D(0.702867, 2.2278, 1.11847, -1.10442, -0.763512, 2.21482, 2.2348, -1.07799, 0.74277, 4.28146, 2.56553, -16.1826)
+transform = Transform3D(4.49495, -3.7809, 2.20987, 0.995853, 21.0326, 0, -2.16714, 1.82287, 4.58359, 19.148, 3.78512, 17.7664)

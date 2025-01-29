@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c654xbytlrv0y"]
+
+[ext_resource type="PackedScene" uid="uid://b5iywqmnobcfp" path="res://Scenes/rock_1.tscn" id="1_lwafe"]
+
+[node name="RockCluster" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(1.42194, 0, 0, 0, -0.392765, 3.01755, 0, -2.22227, -0.533325, -1.4529, 0.252873, 0.37032)
+
+[node name="Node3D6" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(1.29664, 0, 0, 0, 0.420699, 0.775288, 0, -1.49849, 0.217661, 2.41869, 0.536637, -0.419195)
+
+[node name="Node3D9" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(-1.28562, -0.173576, 0.0538874, 0.0455828, 0.413343, 0.775829, -0.162362, 1.49046, -0.208882, -1.02883, 0.536637, -0.419195)
+
+[node name="Node3D7" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(0.47437, 0, 0, 0, -0.547855, 0.0802935, 0, -0.155193, -0.283449, 1.54544, 0.319912, -0.8429)
+
+[node name="Node3D8" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(0.220719, -0.341022, 0.00170589, -0.274544, -0.254931, 0.0587796, -0.0731178, -0.0722152, -0.215557, 1.04777, 0.23183, -0.97559)
+
+[node name="Node3D3" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(0.683721, -1.97871, -2.98023e-08, -0.216993, -0.188855, 3.01755, -1.22775, -1.06854, -0.533325, -0.260585, 0.997517, 0.117393)
+
+[node name="Node3D4" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(1.05476, 1.41056, 0.744823, 0.306112, 0.273805, -2.96928, -0.903157, 1.74014, -0.136546, 1.77758, -1.53247, 0.327372)
+
+[node name="Node3D5" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(2.0385, -0.100497, -0.0408033, -0.0140324, 0.103898, -3.57632, 0.136104, 1.51591, 0.242411, 2.36288, -2.10711, 0.273815)
+
+[node name="Node3D2" parent="." instance=ExtResource("1_lwafe")]
+transform = Transform3D(0.0189726, 1.7372, 0, 0.638886, -0.0175747, -1.91569, -0.888809, 0.0244495, -1.37702, -0.28094, -1.29648, -1.36659)

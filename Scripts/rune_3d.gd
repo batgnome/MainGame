@@ -143,15 +143,6 @@ func update_move_options():
 		if is_instance_valid(marker):
 			marker.queue_free()
 	markers.clear()
-
-	#for x in range(-moves, moves + 1):
-		#for y in range(-moves, moves + 1):
-			#for z in range(-moves, moves + 1):
-				#if abs(x) + abs(y) + abs(z) <= moves and (x != 0 or y != 0 or z != 0):
-					#var marker = marker_mesh.instantiate()
-					#marker.global_transform.origin = global_transform.origin + Vector3(x * tilesize, y * tilesize, 1)
-					#add_child(marker)
-					#markers.append(marker)
 	for x in range(-moves, moves + 1):
 		for z in range(-moves, moves + 1):
 			if abs(z) + abs(x) <= moves:
@@ -167,10 +158,10 @@ func add_follower():
 	var new_follower = follower_scene.instantiate()
 	var follower_mesh = new_follower.get_node("Mesh")
 	var rune_mesh = get_node("Mesh")
+	
 	follower_mesh.material_override = rune_mesh.material_override
 	follower_mesh.set_surface_override_material(0, rune_mesh.get_surface_override_material(0))
-	# new_follower.change_sprite('res://Textures/'+attributes.name+'_tail.png')
-	print(get_node("Mesh"))
+	
 	new_follower.setText(followers.size())
 	new_follower.add_to_group(attributes.group)
 	add_child(new_follower)

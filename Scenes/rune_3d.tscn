@@ -9,7 +9,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_jeb6h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_381by"]
-albedo_color = Color(0.992157, 0.705882, 0.8, 1)
+albedo_color = Color(0, 0.101961, 0.976471, 1)
 
 [node name="Rune3d" type="CharacterBody3D"]
 script = ExtResource("1_lryo6")

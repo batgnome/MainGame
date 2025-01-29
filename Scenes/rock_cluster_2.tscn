@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6ulb0tb36lig"]
+
+[ext_resource type="PackedScene" uid="uid://b5iywqmnobcfp" path="res://Scenes/rock_1.tscn" id="1_5chuc"]
+
+[node name="Rock_cluster2" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(1.51705, -0.919108, 0, 1.32173, 1.05493, 0, 0, 0, 0.996162, -2.26875, 0, 0.67802)
+
+[node name="Node3D9" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(-1.14028, -1.15278, 0, 1.65776, -0.792933, 0, 0, 0, 0.996162, 3.33635, 0.145271, 0.67802)
+
+[node name="Node3D2" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10751, 0, -0.0218248)
+
+[node name="Node3D3" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(1.75601, 0, 0, 0, 1.62125, 0, 0, 0, 0.520917, -0.0823903, 1.77489, 0.140042)
+
+[node name="Node3D4" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(2.38019, 0, 0, 0, 5.71741, 0, 0, 0, 1.00558, -1.51833, -2.38419e-07, -0.162904)
+
+[node name="Node3D5" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(1.56556, 0, 0, 0, 2.0781, 0, 0, 0, 2.27167, 0.100742, 0.316354, 0.320372)
+
+[node name="Node3D6" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(0.992404, -0.68431, 0, 0.186118, 3.64883, 0, 0, 0, 1, 1.26919, 1.0218, 0.240432)
+
+[node name="Node3D7" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(1.00042, -2.11073, 0, 4.75597, 0.443993, 0, 0, 0, 1.10393, -3.49956, 1.15491, -0.183005)
+
+[node name="Node3D8" parent="." instance=ExtResource("1_5chuc")]
+transform = Transform3D(-1.20092, -0.818725, -0.984206, 4.70934, -0.208782, -0.250981, -1.49012e-08, -1.98455, 0.432438, 2.12748, 0.931784, -0.473176)
