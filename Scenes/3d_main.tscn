@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwh7syu1ttnx6"]
+[gd_scene load_steps=7 format=3 uid="uid://bwh7syu1ttnx6"]
 
 [ext_resource type="PackedScene" uid="uid://d16jed5vq2ae3" path="res://Scenes/rune_3d.tscn" id="1_t0s2j"]
 [ext_resource type="Script" path="res://Scripts/3d_main.gd" id="1_tejnt"]
@@ -10,6 +10,10 @@ albedo_color = Color(0.141176, 0.227451, 0.054902, 1)
 material = SubResource("StandardMaterial3D_62abb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f8via"]
+
+[sub_resource type="Environment" id="Environment_2xgf1"]
+background_mode = 1
+background_color = Color(0.568627, 0.843137, 0.843137, 1)
 
 [node name="3dMain" type="Node3D"]
 script = ExtResource("1_tejnt")
@@ -52,3 +56,6 @@ transform = Transform3D(1, 0, 0, 0, 0.7093, 0.704907, 0, -0.704907, 0.7093, 0, 7
 size = 9.889
 near = 0.001
 far = 4002.65
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2xgf1")
