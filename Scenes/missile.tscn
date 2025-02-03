@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg7oc4lms3wc2"]
+
+[ext_resource type="Script" path="res://Scripts/Missile.gd" id="1_w3h8a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6xckj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vvnr"]
+albedo_color = Color(0.901961, 0.137255, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rtjg"]
+
+[node name="Missile" type="Node3D"]
+script = ExtResource("1_w3h8a")
+speed = 50.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["enemy"]]
+transform = Transform3D(0.145, 0, 0, 0, 1.39, 0, 0, 0, 0.145, 0, 0, 0)
+mesh = SubResource("BoxMesh_6xckj")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_7vvnr")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" groups=["enemy"]]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+shape = SubResource("BoxShape3D_1rtjg")
+
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]

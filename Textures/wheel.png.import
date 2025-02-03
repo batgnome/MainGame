@@ -3,25 +3,26 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw3v5d5w1eq4h"
-path="res://.godot/imported/wheel.png-792fa1e83a3b6c36b3fc88601a9fd08f.ctex"
+path.s3tc="res://.godot/imported/wheel.png-792fa1e83a3b6c36b3fc88601a9fd08f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/wheel.png"
-dest_files=["res://.godot/imported/wheel.png-792fa1e83a3b6c36b3fc88601a9fd08f.ctex"]
+dest_files=["res://.godot/imported/wheel.png-792fa1e83a3b6c36b3fc88601a9fd08f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

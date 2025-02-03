@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d16jed5vq2ae3"]
+[gd_scene load_steps=9 format=3 uid="uid://d16jed5vq2ae3"]
 
 [ext_resource type="Script" path="res://Scripts/rune_3d.gd" id="1_lryo6"]
+[ext_resource type="PackedScene" uid="uid://bg7oc4lms3wc2" path="res://Scenes/missile.tscn" id="2_0nt5w"]
 [ext_resource type="PackedScene" uid="uid://chw0cqvf3hska" path="res://Scenes/turn_timer.tscn" id="2_1oqa0"]
+[ext_resource type="Texture2D" uid="uid://bw3v5d5w1eq4h" path="res://Textures/wheel.png" id="2_12aiu"]
 [ext_resource type="Script" path="res://Scripts/TurnTimer3D.gd" id="3_rdv5q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ucutw"]
@@ -9,10 +11,15 @@
 [sub_resource type="BoxMesh" id="BoxMesh_jeb6h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_381by"]
-albedo_color = Color(0, 0.101961, 0.976471, 1)
+albedo_texture = ExtResource("2_12aiu")
+normal_scale = -0.35
+uv1_scale = Vector3(2, 2, 2)
+uv1_offset = Vector3(-0.535, -0.99, 0)
+grow_amount = -3.354
 
 [node name="Rune3d" type="CharacterBody3D"]
 script = ExtResource("1_lryo6")
+missile_scene = ExtResource("2_0nt5w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.323, 0, 0, 0, 1, 0, 0, 0)

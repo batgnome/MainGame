@@ -80,6 +80,10 @@ func _process(delta):
 		$turn.start(attributes.speed)
 
 func _unhandled_input(event):
+	
+	if event.is_action_pressed("move"):
+		shoot_missile()
+
 	#can move rune if this is the selected
 	#if selected:
 		# material = $Sprite2D.material 
@@ -254,3 +258,39 @@ func _on_area_2d_mouse_exited():
 	# material = $Sprite2D.material  
 	# if material is ShaderMaterial:
 	# 	material.set_shader_parameter("width", 0.0)  # Disable outline
+	
+@export var missile_scene: PackedScene  # Drag and drop the missile scene in the Inspector
+
+func shoot_missile():
+	var mouse_pos = get_global_mouse_position()
+	
+	# Convert to XZ movement
+	var direction = (mouse_pos - global_position).normalized()
+	direction.y = 0  # Ensure only X,Z movement
+
+	# Instantiate missile
+	var missile = missile_scene.instantiate()
+	get_parent().add_child(missile)
+
+	# Set position & direction
+	missile.global_position = global_position  # Start at the player
+	missile.direction = direction  # Set direction
+
+	print("Missile shot towards:", direction)
+
+func get_global_mouse_position() -> Vector3:
+	var camera = get_viewport().get_camera_3d()
+	var mouse_pos = get_viewport().get_mouse_position()
+
+	var from = camera.project_ray_origin(mouse_pos)
+	var to = from + camera.project_ray_normal(mouse_pos) * 1000
+
+	# Cast ray to detect where it hits on the ground
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result = space_state.intersect_ray(query)
+
+	if result:
+		return result.position
+	return Vector3.ZERO  # Default fallback
+

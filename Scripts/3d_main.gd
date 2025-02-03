@@ -98,16 +98,16 @@ func playerLogic():
 			show_game_over()
 			
 	#print(EnemRunes)
-	if is_instance_valid(selected):
-		if selected.current_state == 1:
-			for e in EnemRunes:
-				if is_instance_valid(e):
-					if((selected.position - e.position).length()/64 <= selected.attributes.attackRange):
-						if(e.pressed):
-							print(e)
-							e.delete(selected.attributes.attackPower)
-							e.pressed = false
-							selected.current_state = 0
+	#if is_instance_valid(selected):
+		#if selected.current_state == 1:
+			#for e in EnemRunes:
+				#if is_instance_valid(e):
+					#if((selected.position - e.position).length()/64 <= selected.attributes.attackRange):
+						#if(e.pressed):
+							#print(e)
+							#e.delete(selected.attributes.attackPower)
+							#e.pressed = false
+							#selected.current_state = 0
 					
 var current_enemy_index = 0  # Tracks the index of the selected enemy
 

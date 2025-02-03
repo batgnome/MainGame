@@ -3,6 +3,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_l7c8c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yurpi"]
+transparency = 1
 depth_draw_mode = 1
 albedo_color = Color(0.454902, 0.560784, 0.796078, 1)
 emission_enabled = true

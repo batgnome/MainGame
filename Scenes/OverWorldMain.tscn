@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0vmkkq7h1dfb"]
+[gd_scene load_steps=14 format=3 uid="uid://b0vmkkq7h1dfb"]
 
 [ext_resource type="Script" path="res://Scripts/OverWorldPlayer.gd" id="1_3xbut"]
 [ext_resource type="ArrayMesh" uid="uid://dkhovo2k16xsx" path="res://3d assets/mainworld.obj" id="1_c358a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraSpringArm.gd" id="3_p7n4q"]
 [ext_resource type="PackedScene" uid="uid://b6ulb0tb36lig" path="res://Scenes/rock_cluster_2.tscn" id="4_iteov"]
 [ext_resource type="PackedScene" uid="uid://b5iywqmnobcfp" path="res://Scenes/rock_1.tscn" id="4_r8jw6"]
+[ext_resource type="ArrayMesh" uid="uid://do0gfkdwie6s4" path="res://3d assets/house.obj" id="7_t2nqt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qc1gr"]
 albedo_color = Color(0.294118, 0.466667, 0.262745, 1)
@@ -132,3 +133,7 @@ sky_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yx3uw")
+
+[node name="House" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.605238, 0, -0.796044, 0, 1, 0, 0.796044, 0, -0.605238, 8.16674, 0.281492, -5.02727)
+mesh = ExtResource("7_t2nqt")
