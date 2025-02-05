@@ -1,6 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt22mnjtujasb"]
+[gd_scene load_steps=5 format=3 uid="uid://bt22mnjtujasb"]
+
+[ext_resource type="Shader" path="res://Shaders/marker_3d.gdshader" id="1_xolb7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpx7b"]
+render_priority = 0
+shader = ExtResource("1_xolb7")
+shader_parameter/color = Vector4(1, 1, 1, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_l7c8c"]
+material = SubResource("ShaderMaterial_hpx7b")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yurpi"]
 transparency = 1

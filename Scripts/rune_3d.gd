@@ -81,8 +81,9 @@ func _process(delta):
 
 func _unhandled_input(event):
 	
-	if event.is_action_pressed("move"):
-		shoot_missile()
+	if current_state == States.ATTACK:
+		if event.is_action_pressed("move"):
+			shoot_missile()
 
 	#can move rune if this is the selected
 	#if selected:
