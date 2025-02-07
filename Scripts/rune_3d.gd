@@ -69,15 +69,25 @@ func init():
 
 
 func _process(delta):
-	
+	#if $TurnTimer:
+		#var time_left = $turn.get_time_left()
+		#var max_time = $turn.wait_time
+		#$TurnTimer/TextureProgressBar.value = (time_left / max_time) * 100
 	#this is the timer for the node
-	$TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
+	
+	$SubViewportContainer/SubViewport/TurnTimer.set_value(($turn.get_time_left()/$turn.wait_time)*100)
 	if selected:
 		update_move_options()
 	
 	#this starts the timer 
 	if current_state == States.ATTACK && $turn.time_left  <=0:
 		$turn.start(attributes.speed)
+		
+ # Hide the 3D timer when time reaches zero
+	if $turn.time_left <= 0:
+		$timerClock.visible = false
+	else:
+		$timerClock.visible = true
 
 func _unhandled_input(event):
 	

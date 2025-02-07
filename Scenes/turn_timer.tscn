@@ -16,11 +16,10 @@ script = ExtResource("1_i7a3t")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 9.0
+offset_right = 16.0
+offset_bottom = 17.0
 value = 33.0
 fill_mode = 4
 texture_under = ExtResource("2_y2pil")
 texture_progress = ExtResource("3_pwipa")
+metadata/_edit_group_ = true
