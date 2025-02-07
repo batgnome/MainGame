@@ -10,18 +10,14 @@ shader_parameter/color = Vector4(1, 1, 1, 0.5)
 [sub_resource type="BoxMesh" id="BoxMesh_l7c8c"]
 material = SubResource("ShaderMaterial_hpx7b")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yurpi"]
-transparency = 1
-depth_draw_mode = 1
-albedo_color = Color(0.454902, 0.560784, 0.796078, 1)
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 3.4
-emission_operator = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obasu"]
+render_priority = 0
+shader = ExtResource("1_xolb7")
+shader_parameter/color = Vector4(1, 1, 1, 0.1)
 
 [node name="Marker" type="Area3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_l7c8c")
-surface_material_override/0 = SubResource("StandardMaterial3D_yurpi")
+surface_material_override/0 = SubResource("ShaderMaterial_obasu")

@@ -5,5 +5,5 @@ uniform vec4 color = vec4(1.0, 1.0, 1.0, 0.1); // Albedo color with alpha transp
 
 void fragment() {
     ALBEDO = color.rgb;
-    ALPHA = 0.0; // Controls transparency
+    ALPHA = 0.1; // Controls transparency
 }
