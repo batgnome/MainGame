@@ -29,7 +29,7 @@ func _ready():
 	# basic_ui.get_node("PauseMenu/GameOverBox/HBoxContainer/Quit").connect("pressed", Callable(self, "_on_quit_pressed_pause"))
 	
 	get_tree().paused = false
-	for e in get_children():
+	for e in get_child(1).get_children():
 		if e.is_in_group('Player'):
 			PlayRunes.append(e)
 		elif  e.is_in_group('enemy'):
@@ -81,7 +81,7 @@ func _unhandled_input(event):
 
 func playerLogic():
 	if !is_instance_valid(selected):
-		for e in get_children():
+		for e in get_child(1).get_children():
 			if e.is_in_group('Player'):
 				PlayRunes.append(e)
 			elif  e.is_in_group('enemy'):

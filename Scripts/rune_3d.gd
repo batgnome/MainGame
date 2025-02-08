@@ -48,7 +48,7 @@ func _ready():
 	
 func init():
 	# Set the parent node
-	parent = get_parent()
+	parent = get_parent().get_parent()
 	if parent == null:
 		print("Error: Parent is null!")
 		return
@@ -204,7 +204,7 @@ func _on_turn_timeout():
 func get_nearest_player():
 	var nearest_player = null
 	var nearest_dist = 1e10
-	for player in get_parent().PlayRunes:
+	for player in get_parent().get_parent().PlayRunes:
 		if is_instance_valid(player):
 			var dist = global_position.distance_to(player.global_position)
 			if dist < nearest_dist:
@@ -282,7 +282,7 @@ func shoot_missile():
 
 	# Instantiate missile
 	var missile = missile_scene.instantiate()
-	get_parent().add_child(missile)
+	get_parent().get_parent().add_child(missile)
 
 	# Set position & direction
 	missile.global_position = global_position  # Start at the player
