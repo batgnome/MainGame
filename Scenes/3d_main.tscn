@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwh7syu1ttnx6"]
+[gd_scene load_steps=9 format=3 uid="uid://bwh7syu1ttnx6"]
 
 [ext_resource type="PackedScene" uid="uid://d16jed5vq2ae3" path="res://Scenes/rune_3d.tscn" id="1_t0s2j"]
 [ext_resource type="Script" path="res://Scripts/3d_main.gd" id="1_tejnt"]
 [ext_resource type="PackedScene" uid="uid://betfnahvb6aj0" path="res://Scenes/destructable_rock.tscn" id="3_edenl"]
+[ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="3_ie0rh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62abb"]
 albedo_color = Color(0.141176, 0.227451, 0.054902, 1)
@@ -51,13 +52,14 @@ directional_shadow_fade_start = 0.35
 directional_shadow_max_distance = 85.0
 directional_shadow_pancake_size = 32.5
 
-[node name="pivot" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="pivot"]
-transform = Transform3D(0.999613, -4.17238e-07, -0.0278344, 0.019621, 0.7093, 0.704634, 0.0197427, -0.704907, 0.709025, -0.613258, 7.95325, 10.6793)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999613, -4.06997e-07, -0.0278345, 0.019621, 0.7093, 0.704634, 0.0197427, -0.704907, 0.709025, -0.613258, 7.95325, 10.6793)
 size = 9.889
 near = 0.001
 far = 4002.65
+script = ExtResource("3_ie0rh")
+
+[node name="pivot" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2xgf1")

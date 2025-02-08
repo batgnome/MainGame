@@ -158,6 +158,7 @@ func update_move_options():
 		if is_instance_valid(marker):
 			marker.queue_free()
 	markers.clear()
+	$distanceMarker.scale = Vector3(moves*2,0.5,moves*2)
 	for x in range(-moves, moves + 1):
 		for z in range(-moves, moves + 1):
 			if abs(z) + abs(x) <= moves:
