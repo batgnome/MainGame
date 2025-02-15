@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99742, 0.5, -0.446929)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20844, 0.500001, 4.10866)
 
 [node name="Destructable rock4" parent="Map/destructables" instance=ExtResource("3_edenl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40522, 0.499999, 6.23882)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40522, 1.03298, 6.23882)
 
 [node name="runes" type="Node3D" parent="."]
 
@@ -51,24 +51,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40522, 0.499999, 6.23882)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 
 [node name="cameraRig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0006, -2.09889e-07)
 
 [node name="Camera3D" type="Camera3D" parent="cameraRig"]
-transform = Transform3D(0.999613, -4.06997e-07, -0.0278345, 0.019621, 0.7093, 0.704634, 0.0197427, -0.704907, 0.709025, -0.613258, 7.95325, 10.6793)
-size = 9.889
-near = 0.001
-far = 4002.65
 script = ExtResource("3_ie0rh")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.301771, 0.953381, 0, -0.953381, 0.301771, -2.46827, 23.0647, 2.2497)
+light_color = Color(1, 0.85098, 0.462745, 1)
+light_energy = 2.982
+light_indirect_energy = 4.654
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 16.67
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_transmittance_bias = -0.14
+shadow_opacity = 0.55
+
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 248.141, 0)
+transform = Transform3D(0.781183, 0.624302, 0, -0.624302, 0.781183, 0, 0, 0, 1, 58.3178, 38.5424, -2.69647)
+visible = false
 light_color = Color(1, 1, 0.952941, 1)
-light_energy = 0.05
-light_indirect_energy = 6.006
+light_energy = 1.214
+light_indirect_energy = 6.326
 light_volumetric_fog_energy = 8.495
 light_angular_distance = 89.0
 shadow_enabled = true
 shadow_bias = 4.868
 shadow_normal_bias = 2.988
+shadow_reverse_cull_face = true
 shadow_transmittance_bias = 2.158
 shadow_blur = 1.19
 directional_shadow_split_1 = 0.275

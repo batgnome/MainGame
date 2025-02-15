@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d16jed5vq2ae3"]
+[gd_scene load_steps=16 format=3 uid="uid://d16jed5vq2ae3"]
 
 [ext_resource type="Script" path="res://Scripts/rune_3d.gd" id="1_lryo6"]
 [ext_resource type="PackedScene" uid="uid://bg7oc4lms3wc2" path="res://Scenes/missile.tscn" id="2_0nt5w"]
@@ -39,6 +39,8 @@ shader_parameter/color = Vector4(1, 1, 1, 0.1)
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_rfrq1")
 
+[sub_resource type="BoxMesh" id="BoxMesh_5k88x"]
+
 [node name="Rune3d" type="CharacterBody3D"]
 script = ExtResource("1_lryo6")
 missile_scene = ExtResource("2_0nt5w")
@@ -76,5 +78,23 @@ render_target_update_mode = 4
 [node name="distanceMarker" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.175199, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_pm01e")
+
+[node name="Click Markers" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Click Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("BoxMesh_5k88x")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Click Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+mesh = SubResource("BoxMesh_5k88x")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Click Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("BoxMesh_5k88x")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Click Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("BoxMesh_5k88x")
 
 [connection signal="timeout" from="turn" to="." method="_on_turn_timeout"]

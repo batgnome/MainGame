@@ -256,21 +256,6 @@ func updateParent(tail):
 	elif get_group() =='enemy':
 		parent.EnemRunes.append(tail)
 	
-
-
-func _on_area_2d_mouse_entered():
-	inMouse = true
-	# material = $Sprite2D.material 
-	# if material is ShaderMaterial:
-	# 	material.set_shader_parameter("width", 4.0) 
-
-
-func _on_area_2d_mouse_exited():
-	inMouse = false
-	# material = $Sprite2D.material  
-	# if material is ShaderMaterial:
-	# 	material.set_shader_parameter("width", 0.0)  # Disable outline
-	
 @export var missile_scene: PackedScene  # Drag and drop the missile scene in the Inspector
 
 func shoot_missile():
