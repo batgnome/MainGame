@@ -33,17 +33,17 @@ shape = SubResource("BoxShape3D_f8via")
 
 [node name="destructables" type="Node3D" parent="Map"]
 
-[node name="Destructable rock" parent="Map/destructables" instance=ExtResource("3_edenl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3749, 0.5, -1.00072)
+[node name="rockBody2" parent="Map/destructables" instance=ExtResource("3_edenl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 15, -9.4403, 1, 3.12202)
 
-[node name="Destructable rock2" parent="Map/destructables" instance=ExtResource("3_edenl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99742, 0.5, -0.446929)
+[node name="rockBody3" parent="Map/destructables" instance=ExtResource("3_edenl")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0.559704, 1, -3.87798)
 
-[node name="Destructable rock3" parent="Map/destructables" instance=ExtResource("3_edenl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20844, 0.500001, 4.10866)
+[node name="rockBody4" parent="Map/destructables" instance=ExtResource("3_edenl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 15, 10.5597, 1, 3.12202)
 
-[node name="Destructable rock4" parent="Map/destructables" instance=ExtResource("3_edenl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40522, 1.03298, 6.23882)
+[node name="rockBody5" parent="Map/destructables" instance=ExtResource("3_edenl")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0.559704, 1, 10.122)
 
 [node name="runes" type="Node3D" parent="."]
 
